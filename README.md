@@ -1,36 +1,125 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FSD PRO – FiveM Script Detector & Architecture Inspector
 
-## Getting Started
+> **„Odhal technologie, které pohánějí FiveM servery.“**  
+> *„Discover the technology behind FiveM servers.“*
 
-First, run the development server:
+FSD PRO je pokročilá full-stack webová aplikace navržená pro FiveM komunitu, vývojáře, administrátory a majitele GTA V Roleplay serverů. Aplikace analyzuje veřejně dostupná metadata herních serverů, identifikuje používané frameworky a skripty a vytváří detailní analytické reporty podložené nezávislými důkazy.
 
+---
+
+## ⚡ Klíčové funkce
+
+- 🔍 **Veřejný skener (Public Scan):** Zadejte `IP:port` (např. `185.100.200.45:30120`) nebo kód Cfx.re (např. `k8x9pq` nebo `cfx.re/join/xxxxxx`) a získejte okamžitou analýzu.
+- 🛡️ **Neprůstřelná SSRF ochrana:** Blokování loopbacků (`127.0.0.0/8`, `::1`), privátních rozsahů (RFC 1918: `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`), cloudových metadat (`169.254.169.254`), IPv4-mapped IPv6 a prevence DNS rebindingu.
+- 🧩 **Evidence Engine:** Každé tvrzení v reportu odkazuje na konkrétní nezávisle ověřitelný důkaz (např. záznam v `resources[]`, serverovou proměnnou `vars.qb_version` nebo hlavičku).
+- 📊 **Confidence Engine:** Deterministický výpočet míry jistoty (0–100 %) se štítky: *Potvrzeno*, *Silné důkazy*, *Slabé důkazy*, *Neověřeno* a *Nezjištěno*.
+- 🎮 **Autorizovaný FiveM Agent (`fsd_agent`):** Samostatný serverový Lua skript v `server-resource/fsd_agent/` pro majitele serverů. Zajišťuje 100% potvrzenou synchronizaci manifestů bez sdílení citlivých dat, kódů či hesel.
+- ⚖️ **Srovnávač serverů (`/compare`):** Porovnání 2 až 4 serverů vedle sebe v přehledné matici technologií.
+- 📚 **Katalog resources (`/resources`):** Databáze 25+ ověřených FiveM frameworků a knihoven (ESX, QBCore, Qbox, ox_lib, ox_inventory, ps-mdt, lb-phone atd.).
+- 📑 **Export reportů:** Okamžitý export do formátu **JSON** a tisk/generování **PDF**.
+- 🔐 **Autentizace a role:** Bezpečný přihlašovací systém (bcrypt, HTTP-only JWT cookies) s rolemi `user` a `admin`.
+- 🛠️ **Administrační konzole (`/admin`):** Správa uživatelů, auditní log bezpečnostních událostí a přehled všech provedených skenů.
+
+---
+
+## 🏗️ Technologický Stack
+
+- **Frontend & Backend:** Next.js 16 (App Router), React 19, TypeScript (strict mode).
+- **Styling & UI:** Tailwind CSS, Lucide React ikony, glassmorphism prvky a dark tech estetika (`#08090D` / `#0E1118` / `#131722` / `#8B5CF6` / `#38BDF8`).
+- **Databáze:** SQLite (výchozí pro zero-config lokální běh) / PostgreSQL s Prisma 6 ORM.
+- **Export:** jsPDF & nativní JSON downloader.
+- **Validace:** Zod & přísné regulární výrazy pro IP/porty.
+
+---
+
+## 🚀 Rychlé spuštění
+
+### 1. Klonování a instalace závislostí
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Konfigurace prostředí
+Vytvořte soubor `.env` (nebo použijte předpřipravený):
+```env
+DATABASE_URL="file:./dev.db"
+JWT_SECRET="fsd_super_secret_jwt_key_development_2026_change_in_prod"
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
+SCANNER_TIMEOUT_MS=6000
+SCANNER_MAX_RESPONSE_BYTES=2097152
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Příprava databáze a seed
+```bash
+# Vytvoření databázových tabulek
+npx prisma db push
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Naplnění katalogu a demonstračních účtů
+npm run seed
+```
 
-## Learn More
+### 4. Spuštění testovacího balíčku
+```bash
+npm run test
+```
+*Spustí 21 automatizovaných unit a integračních testů (SSRF ochrana, validace portů, detekce frameworků a confidence engine).*
 
-To learn more about Next.js, take a look at the following resources:
+### 5. Spuštění vývojového serveru
+```bash
+npm run dev
+```
+Aplikace běží na: [http://localhost:3000](http://localhost:3000)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 👥 Předpřipravené uživatelské účty (Seed)
 
-## Deploy on Vercel
+| Účet | E-mail | Heslo | Role |
+|---|---|---|---|
+| **Administrátor** | `admin@fsd.local` | `AdminFSD2026!` | `admin` |
+| **Běžný vývojář** | `demo@fsd.local` | `DemoUser2026!` | `user` |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📁 Struktura projektu
+
+```text
+├── prisma/
+│   ├── schema.prisma        # Relační databázové schéma (User, Scan, Target, Evidence, Catalog...)
+│   └── seed.ts              # Vstupní bod pro seed databáze
+├── scripts/
+│   └── test-runner.ts       # Automatizovaný testovací balíček (SSRF, detektory, validace)
+├── server-resource/
+│   └── fsd_agent/           # FiveM serverový resource pro autorizované skenování (Lua)
+│       ├── fxmanifest.lua
+│       ├── config.lua
+│       ├── server.lua
+│       └── README.md
+├── src/
+│   ├── app/
+│   │   ├── api/             # Next.js Route Handlers (/api/scans, /api/health, /api/auth...)
+│   │   ├── scanner/         # Hlavní skenovací rozhraní
+│   │   ├── reports/[id]/    # Detail výsledkového reportu
+│   │   ├── servers/         # Seznam analyzovaných serverů
+│   │   ├── compare/         # Porovnávač 2-4 serverů
+│   │   ├── resources/       # Katalog známých FiveM resources
+│   │   ├── history/         # Historie skenů přihlášeného uživatele
+│   │   ├── settings/        # Správa API klíčů a autorizovaných serverů
+│   │   ├── admin/           # Administrátorský dashboard
+│   │   ├── terms/           # Podmínky použití
+│   │   └── privacy/         # Zásady ochrany osobních údajů
+│   ├── components/          # Opakovaně použitelné komponenty (Navbar, Footer, ConfidenceBadge...)
+│   └── lib/
+│       ├── auth.ts          # Autentizace, JWT, bcrypt, cookies
+│       ├── prisma.ts        # Singleton Prisma klient
+│       └── scanner/         # Modulární skenovací engine
+│           ├── ssrf-guard.ts
+│           ├── input-validator.ts
+│           ├── endpoint-client.ts
+│           ├── evidence-engine.ts
+│           ├── confidence-engine.ts
+│           ├── framework-detector.ts
+│           ├── resource-detector.ts
+│           ├── scanner-service.ts
+│           └── types.ts
+```
