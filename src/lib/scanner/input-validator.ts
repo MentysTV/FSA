@@ -8,7 +8,18 @@ export interface ValidationResult {
 }
 
 export async function parseAndValidateTarget(input: string): Promise<ValidationResult> {
-  const trimmed = input.trim();
+  let trimmed = input.trim();
+  if (!trimmed) {
+    return { valid: false, error: "Zadejte IP adresu s portem nebo kód FiveM serveru." };
+  }
+
+  // Strip F8 prefix and connect commands (e.g. "connect cfx.re/join/xxxxxx", "connect 185.100.200.45:30120", "f8: connect xxx")
+  trimmed = trimmed.replace(/^["'`\[\(]+|["'`\]\)]+$/g, "").trim();
+  trimmed = trimmed.replace(/^f8\s*[:\-]?\s*/i, "");
+  trimmed = trimmed.replace(/^fivem:\/\/(?:connect\/)?/i, "");
+  trimmed = trimmed.replace(/^connect\s+/i, "");
+  trimmed = trimmed.replace(/^["'`\[\(]+|["'`\]\)]+$/g, "").trim();
+
   if (!trimmed) {
     return { valid: false, error: "Zadejte IP adresu s portem nebo kód FiveM serveru." };
   }

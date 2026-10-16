@@ -126,7 +126,21 @@ export class FiveMEndpointClient {
    * Fetches Cfx.re master directory API for single server
    */
   static async fetchCfxApi(serverCode: string): Promise<FetchResult<CfxApiResponse>> {
-    const url = `https://servers-frontend.fivem.net/api/servers/single/${serverCode}`;
-    return safeFetchJson<CfxApiResponse>(url);
+    // Try primary cfx-services endpoint
+    const primaryUrl = `https://frontend.cfx-services.net/api/servers/single/${serverCode}`;
+    const primaryRes = await safeFetchJson<CfxApiResponse>(primaryUrl);
+    if (primaryRes.success && primaryRes.data?.Data) {
+      return primaryRes;
+    }
+
+    // Fallback to legacy servers-frontend.fivem.net
+    const fallbackUrl = `https://servers-frontend.fivem.net/api/servers/single/${serverCode}`;
+    const fallbackRes = await safeFetchJson<CfxApiResponse>(fallbackUrl);
+    if (fallbackRes.success && fallbackRes.data?.Data) {
+      return fallbackRes;
+    }
+
+    return primaryRes.error ? primaryRes : fallbackRes;
   }
 }
+

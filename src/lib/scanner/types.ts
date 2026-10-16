@@ -92,6 +92,35 @@ export interface FetchedMetadata {
     authorizedAgent?: { success: boolean; receivedAt?: string };
   };
   observedAt: string;
+  discordInfo?: DiscordInfo;
+}
+
+export interface DiscordInfo {
+  found: boolean;
+  inviteUrl?: string;
+  inviteCode?: string;
+  source?: string;
+}
+
+export interface CategorizedResource {
+  name: string;
+  category: string;
+  categoryLabel: string;
+  type:
+    | "anticheat"
+    | "mlo"
+    | "vehicle"
+    | "clothing"
+    | "framework"
+    | "inventory"
+    | "phone"
+    | "job"
+    | "gameplay"
+    | "standalone"
+    | "other";
+  description?: string;
+  isAnticheat?: boolean;
+  isMlo?: boolean;
 }
 
 export interface EvidenceRecord {
@@ -144,6 +173,10 @@ export interface ScanReportSummary {
   detectedFrameworks: TechnologyDetection[];
   detectedResources: TechnologyDetection[];
   detectedSystems: TechnologyDetection[];
+  detectedAnticheats: TechnologyDetection[];
+  allCategorizedResources: CategorizedResource[];
+  discordInfo?: DiscordInfo;
   unavailableSources: string[];
   limitationsNotes: string[];
 }
+

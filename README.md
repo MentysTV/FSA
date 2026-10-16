@@ -9,16 +9,22 @@ FSD PRO je pokročilá full-stack webová aplikace navržená pro FiveM komunitu
 
 ## ⚡ Klíčové funkce
 
-- 🔍 **Veřejný skener (Public Scan):** Zadejte `IP:port` (např. `185.100.200.45:30120`) nebo kód Cfx.re (např. `k8x9pq` nebo `cfx.re/join/xxxxxx`) a získejte okamžitou analýzu.
+- 🔍 **Veřejný skener (Public Scan):** Zadejte `IP:port` (např. `185.100.200.45:30120`) nebo kód Cfx.re (např. `994ldb`, `bzbveb` nebo `cfx.re/join/xxxxxx`) a získejte okamžitou analýzu.
+- 🛡️ **Detektor veškerých anticheatů:** Pokročilá detekce 18+ anticheatů (FiveGuard, Phoenix AC, WaveShield, Badger AC, Reaper AC, FireAC, Matrix, ChocoHax, Echo, Fidelis, Tgiann, KS atd.) včetně heuristického scanneru.
+- 🗺️ **100% soupis všech scriptů & MLO interiérů:** Kompletní zobrazení všech položek na serveru rozdělených do kategorií (MLO mapy, vozidla a zvuky, EUP oděvy, framework jádro, inventáře, telefony, frakce a MDT) s živým full-text vyhledáváním a exportem.
+- 💬 **Automatický nález Discord serveru:** Extrakce platné pozvánky na Discord komunitu z proměnných, hostname a allowlist pokynů s přímým tlačítkem pro připojení.
+- 📊 **Živý stav serveru & Obsazenost:** Zobrazení online stavu, počtu hráčů a maximálních slotů, grafu zaplnění v %, herní mapy a přímého F8 connect příkazu i FiveM protokolu.
+- 🚀 **GitHub Pages Ready (`/docs`):** Plně statická single-page webová aplikace ve složce `/docs` pro okamžité nasazení na GitHub Pages bez nutnosti serveru.
 - 🛡️ **Neprůstřelná SSRF ochrana:** Blokování loopbacků (`127.0.0.0/8`, `::1`), privátních rozsahů (RFC 1918: `10.0.0.0/8`, `172.16.0.0/12`, `192.168.0.0/16`), cloudových metadat (`169.254.169.254`), IPv4-mapped IPv6 a prevence DNS rebindingu.
 - 🧩 **Evidence Engine:** Každé tvrzení v reportu odkazuje na konkrétní nezávisle ověřitelný důkaz (např. záznam v `resources[]`, serverovou proměnnou `vars.qb_version` nebo hlavičku).
 - 📊 **Confidence Engine:** Deterministický výpočet míry jistoty (0–100 %) se štítky: *Potvrzeno*, *Silné důkazy*, *Slabé důkazy*, *Neověřeno* a *Nezjištěno*.
 - 🎮 **Autorizovaný FiveM Agent (`fsd_agent`):** Samostatný serverový Lua skript v `server-resource/fsd_agent/` pro majitele serverů. Zajišťuje 100% potvrzenou synchronizaci manifestů bez sdílení citlivých dat, kódů či hesel.
 - ⚖️ **Srovnávač serverů (`/compare`):** Porovnání 2 až 4 serverů vedle sebe v přehledné matici technologií.
-- 📚 **Katalog resources (`/resources`):** Databáze 25+ ověřených FiveM frameworků a knihoven (ESX, QBCore, Qbox, ox_lib, ox_inventory, ps-mdt, lb-phone atd.).
-- 📑 **Export reportů:** Okamžitý export do formátu **JSON** a tisk/generování **PDF**.
+- 📚 **Katalog resources (`/resources`):** Databáze ověřených FiveM frameworků a knihoven (ESX, QBCore, Qbox, ox_lib, ox_inventory, ps-mdt, lb-phone atd.).
+- 📑 **Export reportů:** Okamžitý export do formátu **JSON**, **TXT** a tisk/generování **PDF**.
 - 🔐 **Autentizace a role:** Bezpečný přihlašovací systém (bcrypt, HTTP-only JWT cookies) s rolemi `user` a `admin`.
 - 🛠️ **Administrační konzole (`/admin`):** Správa uživatelů, auditní log bezpečnostních událostí a přehled všech provedených skenů.
+
 
 ---
 

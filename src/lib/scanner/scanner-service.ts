@@ -221,10 +221,16 @@ export class ScannerService {
       const detectedFrameworks = FrameworkDetector.detect(metadata, evidenceEngine);
       const allDetectedScripts = ResourceDetector.detect(metadata, evidenceEngine);
 
+      const detectedAnticheats = ResourceDetector.detectAnticheats(allDetectedScripts);
       const detectedResources = allDetectedScripts.filter((s) => s.resultType === "resource");
       const detectedSystems = allDetectedScripts.filter((s) => s.resultType === "game_system");
 
-      const allDetections = [...detectedFrameworks, ...detectedResources, ...detectedSystems];
+      const discordInfo = ResourceDetector.extractDiscord(metadata);
+      metadata.discordInfo = discordInfo;
+
+      const allCategorizedResources = ResourceDetector.categorizeAllResources(metadata.resources);
+
+      const allDetections = [...detectedFrameworks, ...allDetectedScripts];
 
       // 6. Report Generation & Persistence
       await prisma.scan.update({
@@ -284,16 +290,20 @@ export class ScannerService {
         finishedAt: new Date().toISOString(),
         durationMs: Date.now() - startTime,
         frameworkCount: detectedFrameworks.length,
-        resourceCount: detectedResources.length,
+        resourceCount: metadata.resources.length > 0 ? metadata.resources.length : detectedResources.length,
         systemCount: detectedSystems.length,
         evidenceCount: evidenceEngine.getRecords().length,
         averageConfidence: totalConfidence,
         detectedFrameworks,
         detectedResources,
         detectedSystems,
+        detectedAnticheats,
+        allCategorizedResources,
+        discordInfo,
         unavailableSources,
         limitationsNotes,
       };
+
 
       await prisma.scan.update({
         where: { id: scan.id },

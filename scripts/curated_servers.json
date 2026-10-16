@@ -1,0 +1,1352 @@
+[
+  {
+    "code": "994ldb",
+    "name": "FRESHRP 🌴 - Czech & Slovak Roleplay | Komunitní Eventy",
+    "gametype": "Roleplay CZ/SK",
+    "players": "48/128",
+    "desc": "Přední československý FiveM RP server s přátelskou komunitou a unikátními MLO interiéry.",
+    "discord": "discord.gg/freshrp",
+    "country": "CZ"
+  },
+  {
+    "code": "bzbveb",
+    "name": "GenK.cz Roleplay Main Server | České roleplay prostředí",
+    "gametype": "Roleplay CZ/SK",
+    "players": "12/256",
+    "desc": "Tradiční český komunitní roleplay server.",
+    "discord": "discord.gg/genk",
+    "country": "CZ"
+  },
+  {
+    "code": "5dg4mr",
+    "name": "District 99 - Ultimate Roleplay Experience",
+    "gametype": "Roleplay RP2",
+    "players": "841/2048",
+    "desc": "Masivní mezinárodní roleplay server s unikátními systémy.",
+    "discord": "discord.gg/district99",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "4eedg9",
+    "name": "MNRP.cz - Morava & Náchod Roleplay | Realistický život",
+    "gametype": "Roleplay CZ/SK",
+    "players": "35/128",
+    "desc": "Český komunitní roleplay server zaměřený na kvalitu RP.",
+    "discord": "discord.gg/mnrp",
+    "country": "CZ"
+  },
+  {
+    "code": "55xbk6",
+    "name": "Unity RP [Unity Your world is not just a server]",
+    "gametype": "Roleplay",
+    "players": "258/966",
+    "desc": "Unikátní herní svět s velkou komunitou a vlastním obsahem.",
+    "discord": "discord.gg/unityrp",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "q8538p",
+    "name": "UNITY RP V2 [PUBLIC] - Komunita & Eventy",
+    "gametype": "Roleplay",
+    "players": "146/2048",
+    "desc": "Veřejný komunitní FiveM server s OneSync a optimalizovaným jádrem.",
+    "discord": "discord.gg/unityrp",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "lzy8l7",
+    "name": "Elite RP 5.0 | Free Gang Perks | Active EMS & PD | Custom Cars",
+    "gametype": "Freeroam",
+    "players": "45/200",
+    "desc": "Akční FiveM server s vlastními vozidly a frakcemi.",
+    "discord": "discord.gg/eliterp",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "77dz4v",
+    "name": "Czech Lipov Project - Realistická česká vesnice",
+    "gametype": "Czech Roleplay",
+    "players": "20/64",
+    "desc": "Tematický český server s unikátní venkovskou atmosférou.",
+    "discord": "",
+    "country": "CZ"
+  },
+  {
+    "code": "6ka9pj",
+    "name": "CzechCore RP | Československá komunita",
+    "gametype": "Roleplay CZ/SK",
+    "players": "18/128",
+    "desc": "Roleplay server pro CZ a SK hráče.",
+    "discord": "",
+    "country": "CZ"
+  },
+  {
+    "code": "4oxj8q",
+    "name": "Midnight District RP - Custom Framework",
+    "gametype": "Roleplay",
+    "players": "112/500",
+    "desc": "Noční roleplay svět s propracovanou ekonomikou.",
+    "discord": "discord.gg/midnight",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "3eddyb",
+    "name": "South Beach V2 | Miami Based 18+ Roleplay",
+    "gametype": "Roleplay",
+    "players": "95/500",
+    "desc": "Miami tematický server se zážitkovým roleplayem.",
+    "discord": "discord.gg/southbeach",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "zkayo5",
+    "name": "Unova Roleplay Season 2 | Serious UK RP | Whitelisted",
+    "gametype": "Serious RP",
+    "players": "60/256",
+    "desc": "Kvalitní britský roleplay server.",
+    "discord": "discord.gg/unova",
+    "country": "UK"
+  },
+  {
+    "code": "p39bpy",
+    "name": "[ Arab Pure",
+    "gametype": "VisionX-Files",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "gkd4kq",
+    "name": "Elite RP 5.0 | Free Gang Perks | Active EMS & PD | Active Staff | Custom Cars, Drugs & Businesses | discord.gg/eliterp",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "vz4yqk",
+    "name": "Trappin City | Five Boroughs | The City That Never Sleeps | Semi Serious Community",
+    "gametype": "Trappin2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "zrqv8p",
+    "name": "The Towns",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "rxb9x7",
+    "name": "The Towns",
+    "gametype": "Roleplay RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "vxz4gq",
+    "name": "[BRASIL]",
+    "gametype": "Roleplay RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "8rye45",
+    "name": "VALLEY ROLEPLAY WIPOU HOJE",
+    "gametype": "Roleplay RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "ymkax5",
+    "name": "[BRASIL]",
+    "gametype": "Roleplay RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "vv934e",
+    "name": "KNG ESTATE",
+    "gametype": "Roleplay RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "vre5mr",
+    "name": "[BRASIL]",
+    "gametype": "Roleplay RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "djoq65",
+    "name": "[BRASIL] FLUXO ROLEPLAY WIPOU",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "brg4j4",
+    "name": "Miami Based | 18+ Roleplay | Largest Clothing Selection | Streamer & Female Friendly | Whitelist Community",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "6r9ob4",
+    "name": "Arena",
+    "gametype": "PVPJHFXServer-feature/network-improvemen",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "ql35j9",
+    "name": "WOLF SIDE",
+    "gametype": "Wolf Side2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "zqm5ey",
+    "name": "[Public] [FR] Revolution Roleplay",
+    "gametype": "RevolutionRP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "ym86dj",
+    "name": "[BRASIL]",
+    "gametype": "Roleplay RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "yg8qdj",
+    "name": "Royal RP",
+    "gametype": "Roleplay RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "p4dray",
+    "name": "[FR/QC/BE] Sensity",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "xa74le",
+    "name": "[FR/QC/BE] Sensity",
+    "gametype": "Riv Tech.2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "69pa4j",
+    "name": "[FR] VICELAND | FREE ACCESS | Staff Actif | Ambiance Familiale | Contenue Incroyable & Optimis",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "drg8mj",
+    "name": "RETRO ROLEPLAY |",
+    "gametype": "eutschlands beliebtester Roleplay-Server",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "bo9yvl",
+    "name": "The Streets LA | LA Based Server | Streamer & Female Friendly | Semi Serious Community",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "zxz9q9",
+    "name": "[FR/CH/BE]",
+    "gametype": "kaido2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "9oo7mm",
+    "name": "MOST WANTED",
+    "gametype": "GTA RP - FR2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "e3r47a",
+    "name": "DRILL-UK",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "lvmkrv",
+    "name": "True Society RP",
+    "gametype": "NRW ROLEPLAY2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "7z6a7a",
+    "name": "XServer-master v1.0.0.35245 linuxX",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "88q583",
+    "name": "We The People RP",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "558pra",
+    "name": "REAL RP -",
+    "gametype": "FreeroamJHFXServer-feature/network-impro",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "jayqda",
+    "name": "REAL RP -",
+    "gametype": "Roleplay RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "xjz9k5",
+    "name": "PRIME RP -",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "davyvy",
+    "name": "PRIME RP -",
+    "gametype": "RIME RP -",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "zgqezy",
+    "name": "CLOUD GANGWAR | BODYSHOT & HEADSHOT | HIGH PERFORMANCE",
+    "gametype": "Gangwar",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "l9mmjj",
+    "name": "SkyV |",
+    "gametype": "5SkyV 2026 Gr",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "vra4ax",
+    "name": "UNION PD RP | Anyone Can Be Cop | Realistic | vMenu | Custom Callouts | Free Cars | Active Staff | discord.gg/UnionPDRP",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "mx6a9d",
+    "name": "UNION PD RP | Anyone Can Be Cop | Realistic | vMenu | Custom Callouts | Free Cars | Active Staff | discord.gg/UnionPDRP",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "xvzobe",
+    "name": "[FR/QC/BE] PRIME RP",
+    "gametype": "PRIME-RP",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "zy67ky",
+    "name": "XServer-master v1.0.0.35245 linuxX",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "pk75km",
+    "name": "XServer-master v1.0.0.35245 linuxX",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "epzqqm",
+    "name": "REDEMPTIONV |",
+    "gametype": "SpainRol2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "pyxy35",
+    "name": "[BRASIL]",
+    "gametype": "Zombies Apocalipse2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "okyg4x",
+    "name": "Maarsseveen Roleplay",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "gzr7mx",
+    "name": "Maarsseveen Roleplay",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "bo578d",
+    "name": "ORG RP",
+    "gametype": "ORG2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "4d9gmo",
+    "name": "GIGA SP",
+    "gametype": "Complexo RJ2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "lyy7rv",
+    "name": "Bright Falls RP | Active Sheriff + Doctors | Over 30+ Jobs! | Active Staff",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "y77yo9",
+    "name": "JRP | Police RP | EUP | DOJ Based | vMenu | 1000+ Custom Cars | Anyone Can Be a Cop | Cayo Perico | discord.gg/JRP",
+    "gametype": "JRP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "l9pq64",
+    "name": "A JERARQUIA RP >> NOVEDADES 10/11bQ",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "exzk3m",
+    "name": "MALTA  INAUGURA",
+    "gametype": "Roleplay RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "dz4o55",
+    "name": "SkyFA",
+    "gametype": "SkyFA2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "ddvr9j",
+    "name": "Apollo Networks | Australian Roleplay | Active Staff",
+    "gametype": "RoleplayJHFXServer-feature/network-impro",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "9vplea",
+    "name": "ALTA RJ WIPOU HOJE",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "ol6l5r",
+    "name": "RedRiver Roleplay",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "lok5k7",
+    "name": "State of Deliverance",
+    "gametype": "5Kentucky RP",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "q9yo3v",
+    "name": "State of Deliverance",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "qjkg6v",
+    "name": "New Valley RPJ)FXServer-master SERVER v1.0.0.35245 win32X",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "xqge8r",
+    "name": "Europa Roleplay",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "rlvgdj",
+    "name": "NEW Amersfoort | BETA!",
+    "gametype": "ilvergate RP",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "db57ry",
+    "name": "Silvergate RP",
+    "gametype": "ilvergate RP",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "ae5mpk",
+    "name": "Syn County Roleplay  18+",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "pblrxm",
+    "name": "BRASIL CAPITAL  ROLEPLAY",
+    "gametype": "Brasil Capital Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "me9drd",
+    "name": "[UK/EU] CMG 2.0 Public | Economy | Gangs | Heists | PVP | Arma 3 Vibe | discord.gg/cmg",
+    "gametype": "CMG2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "am5lm3",
+    "name": "Lincoln County RP | 1899 Old West | 60+ Jobs | Hiring Immersive Doctors and Marshals",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "vgd4qe",
+    "name": "ReflexRPJ)FXServer-master SERVER v1.0.0.35245 win32X",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "eg55e3",
+    "name": "Lumix RP |",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "4ok8j5",
+    "name": "XServer-master v1.0.0.35245 linuxX",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "7agv9r",
+    "name": "True Grit RP(Ozark County)",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "mdygvq",
+    "name": "True Night RP | MONTHLY UPDATES | FivePD vMenu RP | Anyone Can Be A Cop | Civ Jobs Gangs Heists | PD EMS Fire DOJJ)FXServer-master SERVER v1",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "8boo93",
+    "name": "4Touch.EU | WL-OFF",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "bok8bd",
+    "name": "Haarlem Roleplay",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "4d6a9v",
+    "name": "ALESTA ROLEPLAY ALLOWL",
+    "gametype": "Freeroam",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "gm3g4q",
+    "name": "ALESTA ROLEPLAY ALLOWL",
+    "gametype": "VisionX-Files",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "lkvoa7",
+    "name": "GTAHUB.GG ANDROMEDA",
+    "gametype": "oleplay, rp, es, custom, official, gtahu",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "ajv9r5",
+    "name": "Switch",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "omlj6y",
+    "name": "Liberty City | Apertura Reciente",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "axk78k",
+    "name": "XServer-master v1.0.0.35245 linuxX",
+    "gametype": "Pecado2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "x9kkxx",
+    "name": "8Happy Days RP | discord.gg/HDRP b",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "y4qlbj",
+    "name": "[GER] ModernV",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "35allo",
+    "name": "[GER] ModernV",
+    "gametype": "ModernV2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "krdly6",
+    "name": "State Line RP Serious ERS Emergency Services Simulator",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "joa4pa",
+    "name": "Balkan Vortex Roleplay",
+    "gametype": "Vortex Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "r8b5y8",
+    "name": "HypeRP | discord.gg/hyperp | WL-OFF | Boj",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "pjyya7",
+    "name": "West Coast Roleplay - WC-RP.com",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "2ld47j",
+    "name": "West Coast Roleplay - WC-RP.com",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "bmp6dp",
+    "name": "FutureDM & Mini Games V3J)FXServer-master SERVER v1.0.0.37287 win32X",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "3eayl8",
+    "name": "FutureDM & Mini Games V3J)FXServer-master SERVER v1.0.0.37287 win32X",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "4agj4q",
+    "name": "[ISRAEL] FutureIL - RolePlay V7",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "eqd47m",
+    "name": "Silver RP S2",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "pmodk5",
+    "name": "CLIMAX",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "xyqogx",
+    "name": "Miracle FightJ)FXServer-master SERVER v1.0.0.37287 win32X",
+    "gametype": "GameZone-RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "am35ok",
+    "name": "[Israel] Game Zone Israel - Public RolePlay",
+    "gametype": "GameZone-RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "3er4lz",
+    "name": "DEVILSDANCE |",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "7rllgr",
+    "name": "OFFSET RP - discord.offset.gg",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "5ploa6",
+    "name": "OFFSET RP - discord.offset.gg",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "jy9ekm",
+    "name": "Slax RP > HARD ROLEPLAY > BEST FPS > discord.gg/slaxrp",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "jy9o9m",
+    "name": "Dust to Dreams RP",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "y6kjmj",
+    "name": "XServer-master v1.0.0.35245 linuxX",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "bog7d8",
+    "name": "XServer-master v1.0.0.35245 linuxX",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "g3qxo9",
+    "name": "Zen Roleplay",
+    "gametype": "oleplay,rp,brasil,fac,policia,rj,lgbt,vr",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "6xmor8",
+    "name": "[ UAE RP",
+    "gametype": "Melix Files",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "mr36va",
+    "name": "XServer-master v1.0.0.35245 linuxX",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "k5pbka",
+    "name": "Little Creek Roleplay | Active Staff",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "rjxj4g",
+    "name": "[ITA] MAFIA STATE RP | WL CONOSCITIVA |",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "7qd95a",
+    "name": "CALIFORNIA RP WIPOU HOJE FACS E ORGS DISPONIVEIS",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "8lla53",
+    "name": "AtlanticRP |",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "p9a86y",
+    "name": "ELITEGAMERS RomaniaJ)FXServer-master SERVER v1.0.0.35945 win32X",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "plqyaa",
+    "name": "ResolveRP NEW!J)FXServer-master SERVER v1.0.0.36897 win32X",
+    "gametype": "RolePlay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "rr45g8",
+    "name": "Wild Lands Season 5 Powered by ACK Team | discord.gg/wildlandsita",
+    "gametype": "RolePlay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "6754a8",
+    "name": "GRAJAU RP TEMA SP VEICULO GRATIS FAC CORP",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "zpeaky",
+    "name": "ENEMY OF THE STATE ROLEPLAY",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "5jvzl6",
+    "name": "PMPJ)FXServer-master SERVER v1.0.0.31536 win32X",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "y4xm55",
+    "name": "ANAR",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "boya5d",
+    "name": "Everglade County RP",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "y7yj3y",
+    "name": "SKYPOS PVP SAISON HALLOWEEN OPTI TOP GF",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "8aogdb",
+    "name": "LMG5.LT - Lietuvos Miesteli",
+    "gametype": "Grind Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "q96od9",
+    "name": "DzielnicaRP OG 2k20 WL OFF |",
+    "gametype": "DzielnicaRP.EU2 https://discord.gg/dziel",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "3dogpo",
+    "name": "EXODUS ROLEPLAY",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "edv6zm",
+    "name": "Balkan Glory Roleplay",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "d4aovd",
+    "name": "Canada RoleplayJ\"FXServer-master v1.0.0.35245 linuxX",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "xxgppr",
+    "name": "Canada RoleplayJ\"FXServer-master v1.0.0.35245 linuxX",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "9v3eem",
+    "name": "toryV,Roleplay,Deutsch,German,esxb~",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "qddk3z",
+    "name": "x64 FightJ)FXServer-master SERVER v1.0.0.25770 win32X",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "y8p67j",
+    "name": "PRO4KINGS ROMANIA ROLEPLAY - discord.gg/PRO4KINGS",
+    "gametype": "ROLEPLAY2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "r6yq6x",
+    "name": "NLRP ERS |",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "am6ak5",
+    "name": "BRUTAL ARENA",
+    "gametype": "Roleplay2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "4m3ez9",
+    "name": "The Hive Roleplay",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "7zopvv",
+    "name": "The Hive Roleplay",
+    "gametype": "Freeroam2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "z5qga9",
+    "name": "XServer-master v1.0.0.35245 linuxX",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "9pd5ve",
+    "name": "[FR][BE]",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "q4k8gz",
+    "name": "[FR][BE]",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "vg7bvx",
+    "name": "UNITY",
+    "gametype": "Unity2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "ybe9dm",
+    "name": "UNITY",
+    "gametype": "Unity2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "marpjv",
+    "name": "Haos",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "klgobd",
+    "name": "TBW Survival RP | Bases | Zombies | Airdrops | Crews/Orgs | Com Servidor Treino PV",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "drgq35",
+    "name": "Second-Shore",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "egryep",
+    "name": "ttp://www.dreamrp.de/Comp_1_1.gifb",
+    "gametype": "GTA-V RP2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "5jzyjd",
+    "name": "Las Vegas Rp Season 1",
+    "gametype": "Apex Team V2 Pack2",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  },
+  {
+    "code": "eyzx3d",
+    "name": "DROXEN RP",
+    "gametype": "Roleplay",
+    "players": "Aktivní",
+    "desc": "Veřejný FiveM server připojený do master listu.",
+    "discord": "",
+    "country": "GLOBAL"
+  }
+]

@@ -26,7 +26,12 @@ import { FrameworkCard } from "@/components/scanner/FrameworkCard";
 import { ResourceTable } from "@/components/scanner/ResourceTable";
 import { EvidencePanel } from "@/components/scanner/EvidencePanel";
 import { ExportMenu } from "@/components/scanner/ExportMenu";
-import { TechnologyDetection, EvidenceRecord } from "@/lib/scanner/types";
+import { ServerLiveStatusHeader } from "@/components/scanner/ServerLiveStatusHeader";
+import { AnticheatAlertBanner } from "@/components/scanner/AnticheatAlertBanner";
+import { AllResourcesExplorer } from "@/components/scanner/AllResourcesExplorer";
+import { ResourceDetector } from "@/lib/scanner/resource-detector";
+import { TechnologyDetection, EvidenceRecord, CategorizedResource, DiscordInfo } from "@/lib/scanner/types";
+
 
 export const dynamic = "force-dynamic";
 
@@ -113,6 +118,25 @@ export default async function ReportDetailPage(props: {
   const allEvidences: EvidenceRecord[] = scan.evidences as any;
   const isDemo = scan.id.startsWith("demo-") || scan.target.normalizedIdentifier.includes("demo.");
 
+  // Anticheats resolution
+  const anticheats: TechnologyDetection[] =
+    summary?.detectedAnticheats && summary.detectedAnticheats.length > 0
+      ? summary.detectedAnticheats
+      : ResourceDetector.detectAnticheats([...resources, ...systems]);
+
+  // Discord resolution
+  const discordInfo: DiscordInfo =
+    summary?.discordInfo ||
+    (rawData ? ResourceDetector.extractDiscord(rawData) : { found: false });
+
+  // 100% of server resources categorized
+  const allCategorizedResources: CategorizedResource[] =
+    summary?.allCategorizedResources && summary.allCategorizedResources.length > 0
+      ? summary.allCategorizedResources
+      : rawData?.resources
+      ? ResourceDetector.categorizeAllResources(rawData.resources)
+      : [];
+
   return (
     <div className="min-h-screen flex flex-col bg-[#08090D] text-[#F8FAFC]">
       <Navbar />
@@ -128,102 +152,42 @@ export default async function ReportDetailPage(props: {
             Zpět na skener
           </Link>
 
-          {isDemo && (
-            <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider">
-              DEMO DATA REPORT
-            </span>
-          )}
-        </div>
-
-        {/* Top Report Header Bar */}
-        <div className="bg-[#131722] border border-[#252B3A] rounded-2xl p-6 sm:p-8 shadow-2xl">
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 pb-6 border-b border-[#252B3A]">
-            <div className="space-y-2">
-              <div className="flex flex-wrap items-center gap-2.5">
-                <ScanStatusBadge status={scan.status as any} />
-                <span className="font-mono text-xs px-2.5 py-0.5 rounded bg-[#0E1118] text-slate-400 border border-[#252B3A]">
-                  ID: {scan.id.substring(0, 18)}
-                </span>
-                <span className="text-xs text-slate-500 capitalize">
-                  Režim: {scan.scanMode === "authorized" ? "Autorizovaný" : "Veřejný"}
-                </span>
-              </div>
-
-              <h1 className="text-2xl sm:text-3xl font-black text-white">
-                {scan.target.displayName || scan.target.normalizedIdentifier}
-              </h1>
-
-              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-slate-400">
-                <span className="flex items-center gap-1.5 text-slate-300">
-                  <Terminal className="w-3.5 h-3.5 text-[#8B5CF6]" />
-                  {scan.target.normalizedIdentifier}
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Users className="w-3.5 h-3.5 text-[#38BDF8]" />
-                  {summary?.playersCount ?? scan.target.lastPlayers} /{" "}
-                  {summary?.maxPlayers ?? scan.target.lastMaxPlayers} Hráčů
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-slate-500" />
-                  {new Date(scan.startedAt).toLocaleString("cs-CZ")}
-                </span>
-              </div>
-            </div>
-
-            {/* Actions: Export / Re-scan */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <ExportMenu report={summary || { ...scan, targetId: scan.targetId }} rawScan={scan} />
-              <Link
-                href={`/scanner?target=${encodeURIComponent(scan.target.normalizedIdentifier)}`}
-                className="flex items-center justify-center gap-1.5 px-4 py-2 rounded-lg bg-[#8B5CF6] hover:bg-[#7c3aed] text-white text-xs font-semibold shadow-md shadow-[#8B5CF6]/20 transition-all"
-              >
-                <RotateCw className="w-3.5 h-3.5" />
-                Opakovat sken
-              </Link>
-            </div>
-          </div>
-
-          {/* Quick Metrics Cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6">
-            <div className="bg-[#0E1118] border border-[#252B3A] rounded-xl p-4">
-              <div className="text-[11px] text-slate-400 font-medium">Frameworky</div>
-              <div className="text-xl sm:text-2xl font-black text-white mt-1">
-                {frameworks.length}
-              </div>
-              <div className="text-[10px] text-purple-400 mt-0.5">
-                {frameworks.length > 0 ? frameworks[0].name : "Nezjištěno"}
-              </div>
-            </div>
-
-            <div className="bg-[#0E1118] border border-[#252B3A] rounded-xl p-4">
-              <div className="text-[11px] text-slate-400 font-medium">Potvrzené Resources</div>
-              <div className="text-xl sm:text-2xl font-black text-white mt-1">
-                {resources.length}
-              </div>
-              <div className="text-[10px] text-emerald-400 mt-0.5">
-                Katalogové shody
-              </div>
-            </div>
-
-            <div className="bg-[#0E1118] border border-[#252B3A] rounded-xl p-4">
-              <div className="text-[11px] text-slate-400 font-medium">Herní systémy</div>
-              <div className="text-xl sm:text-2xl font-black text-white mt-1">
-                {systems.length}
-              </div>
-              <div className="text-[10px] text-[#38BDF8] mt-0.5">MDT, Garáže, Hlas</div>
-            </div>
-
-            <div className="bg-[#0E1118] border border-[#252B3A] rounded-xl p-4">
-              <div className="text-[11px] text-slate-400 font-medium">Doložené důkazy</div>
-              <div className="text-xl sm:text-2xl font-black text-white mt-1">
-                {allEvidences.length}
-              </div>
-              <div className="text-[10px] text-slate-400 mt-0.5">Evidence Engine</div>
-            </div>
+          <div className="flex items-center gap-3">
+            {isDemo && (
+              <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-bold uppercase tracking-wider">
+                DEMO DATA REPORT
+              </span>
+            )}
+            <ExportMenu report={summary || { ...scan, targetId: scan.targetId }} rawScan={scan} />
+            <Link
+              href={`/scanner?target=${encodeURIComponent(scan.target.normalizedIdentifier)}`}
+              className="flex items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#8B5CF6] hover:bg-[#7c3aed] text-white text-xs font-semibold shadow-md shadow-[#8B5CF6]/20 transition-all"
+            >
+              <RotateCw className="w-3.5 h-3.5" />
+              Opakovat sken
+            </Link>
           </div>
         </div>
 
-        {/* Section: Frameworks */}
+        {/* 1. Live Server Status Card (Online, Players/Slots, Discord, Connect) */}
+        <ServerLiveStatusHeader
+          displayName={scan.target.displayName || scan.target.normalizedIdentifier}
+          normalizedIdentifier={scan.target.normalizedIdentifier}
+          online={summary?.online ?? scan.target.lastOnlineStatus}
+          playersCount={summary?.playersCount ?? scan.target.lastPlayers}
+          maxPlayers={summary?.maxPlayers ?? scan.target.lastMaxPlayers}
+          gameType={rawData?.gameType}
+          mapName={rawData?.mapName}
+          discordInfo={discordInfo}
+          serverVars={rawData?.serverVars}
+          bannerDetail={rawData?.bannerDetail}
+          icon={rawData?.serverVars?.iconVersion || rawData?.serverVars?.icon}
+        />
+
+        {/* 2. Anticheat Alert & Security Panel */}
+        <AnticheatAlertBanner anticheats={anticheats} />
+
+        {/* 3. Section: Frameworks */}
         <section className="space-y-4">
           <div className="flex items-center gap-2">
             <Cpu className="w-5 h-5 text-[#8B5CF6]" />
@@ -244,10 +208,33 @@ export default async function ReportDetailPage(props: {
           )}
         </section>
 
-        {/* Section: Resources & Systems */}
+        {/* 4. Complete Server Resources Explorer (100% of all scripts, MLOs, cars) */}
+        {allCategorizedResources.length > 0 && (
+          <section>
+            <AllResourcesExplorer
+              resources={allCategorizedResources}
+              serverName={scan.target.displayName || scan.target.normalizedIdentifier}
+            />
+          </section>
+        )}
+
+        {/* 5. Section: Verified Catalog Matches */}
         <section className="space-y-6">
           <ResourceTable
             resources={resources}
+            title="Katalogově ověřené Resources"
+            subtitle="Položky s nezávisle doloženými důkazy a kalkulovaným skóre spolehlivosti."
+          />
+
+          {systems.length > 0 && (
+            <ResourceTable
+              resources={systems}
+              title="Herní subsystémy & Doplňky"
+              subtitle="Policejní terminály, smartphony, garáže a ekonomické balíčky."
+            />
+          )}
+        </section>
+
             title="Detekované Resources & Skripty"
             subtitle="Položky přímo doložené v seznamu spuštěných resources nebo konfiguraci serveru."
           />
