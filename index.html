@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="servers_db.js"></script>
   
   <style>
     :root {
@@ -1827,33 +1828,14 @@
       }
     ];
 
-    const SERVER_DIRECTORY = [
-      ...FEATURED_PRESETS.map(p => ({
-        code: p.code,
-        name: p.name,
-        gametype: p.gametype,
-        players: p.players,
-        desc: p.desc,
-        country: p.country,
-        tags: p.tags
-      })),
-      {"code": "q8538p", "name": "UNITY RP V2 [PUBLIC] - Komunita & Eventy", "gametype": "Roleplay", "players": "146/2048", "desc": "Veřejný komunitní FiveM server s OneSync a optimalizovaným jádrem.", "discord": "discord.gg/unityrp", "country": "GLOBAL"},
-      {"code": "zkayo5", "name": "NexuX RP Season 2 | Serious Roleplay", "gametype": "Serious RP", "players": "60/256", "desc": "Kvalitní mezinárodní roleplay server s 250+ skripty.", "discord": "discord.gg/unova", "country": "GLOBAL"},
-      {"code": "y4qlbj", "name": "Redline District / ModernV Germany", "gametype": "Roleplay", "players": "Aktivní", "desc": "Německý vehicle-based roleplay server s 390+ resources.", "discord": "", "country": "GLOBAL"},
-      {"code": "zgqezy", "name": "CLOUD GANGWAR | BODYSHOT & HEADSHOT", "gametype": "Gangwar", "players": "Aktivní", "desc": "Akční FiveM aréna zaměřená na PvP a zbraňové souboje.", "discord": "", "country": "GLOBAL"},
-      {"code": "gkd4kq", "name": "Elite RP 5.0 | Free Gang Perks | Active Staff", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"},
-      {"code": "vz4yqk", "name": "Trappin City | Five Boroughs | The City That Never Sleeps", "gametype": "Trappin2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"},
-      {"code": "8rye45", "name": "VALLEY ROLEPLAY WIPOU HOJE", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"},
-      {"code": "vv934e", "name": "KNG ESTATE ROLEPLAY", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"},
-      {"code": "zqm5ey", "name": "[Public] [FR] Revolution Roleplay", "gametype": "RevolutionRP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"},
-      {"code": "p4dray", "name": "[FR/QC/BE] Sensity Roleplay", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"},
-      {"code": "drg8mj", "name": "RETRO ROLEPLAY | Německý Server", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"},
-      {"code": "bo9yvl", "name": "The Streets LA | LA Based Server", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"},
-      {"code": "e3r47a", "name": "DRILL-UK Action Server", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"},
-      {"code": "lvmkrv", "name": "True Society RP Germany", "gametype": "NRW ROLEPLAY2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"},
-      {"code": "88q583", "name": "We The People RP", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"},
-      {"code": "vra4ax", "name": "UNION PD RP | Realistic Police & vMenu", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}
-    ];
+    function getAllServersDirectory() {
+      if (typeof window.SERVERS_DATABASE !== "undefined" && Array.isArray(window.SERVERS_DATABASE) && window.SERVERS_DATABASE.length > 0) {
+        return window.SERVERS_DATABASE;
+      }
+      return FEATURED_PRESETS;
+    }
+
+    const SERVER_DIRECTORY = FEATURED_PRESETS;
 
     let currentServerData = null;
     let allCategorizedList = [];
@@ -1868,12 +1850,18 @@
       if (!grid) return;
       grid.innerHTML = "";
 
-      const filtered = FEATURED_PRESETS.filter(p => {
-        if (category === "all") return true;
-        if (category === "cz") return p.category === "cz" || (p.country && p.country.includes("CZ"));
-        if (category === "global") return p.category === "global" || p.country === "GLOBAL";
-        return true;
-      });
+      const db = getAllServersDirectory();
+      let filtered = [];
+
+      if (category === "cz") {
+        filtered = db.filter(s => (s.country || "").includes("CZ")).slice(0, 36);
+      } else if (category === "global") {
+        filtered = db.filter(s => (s.country || "") === "GLOBAL").slice(0, 36);
+      } else {
+        const presets = db.filter(s => s.isPreset);
+        const others = db.filter(s => !s.isPreset).slice(0, 28);
+        filtered = [...presets, ...others];
+      }
 
       for (const p of filtered) {
         const card = document.createElement("div");
@@ -1886,15 +1874,17 @@
           : `<span class="tag-global">GLOBAL</span>`;
 
         const tagsHtml = (p.tags || []).map(t => 
-          `<span class="server-code-pill" style="font-size: 0.65rem; padding: 0.15rem 0.45rem;">${t}</span>`
+          `<span class="server-code-pill" style="font-size: 0.65rem; padding: 0.15rem 0.45rem;">${escapeHtml(t)}</span>`
         ).join(" ");
+
+        const playerDisplay = p.players || (p.clients !== undefined ? `${p.clients}/${p.maxClients || 128} slotů` : "Online");
 
         card.innerHTML = `
           <div>
             <div class="preset-card-head">
               <div class="preset-card-badges">
                 <span class="online-pill" style="font-size: 0.65rem; padding: 0.15rem 0.5rem;"><span class="pulse-dot"></span> LIVE</span>
-                <span class="server-code-pill font-mono">${p.code}</span>
+                <span class="server-code-pill font-mono">${escapeHtml(p.code)}</span>
                 ${tagBadge}
               </div>
             </div>
@@ -1907,7 +1897,7 @@
               ${tagsHtml}
             </div>
             <div class="preset-card-foot">
-              <span>Sloty: <strong style="color: #00F0FF;">${p.players}</strong></span>
+              <span>Hráči / Sloty: <strong style="color: #00F0FF;">${escapeHtml(playerDisplay)}</strong></span>
               <span class="btn-preset-scan">
                 Analyzovat →
               </span>
@@ -2207,20 +2197,19 @@
       // If user typed a search term by name (contains spaces or no special delimiters and matches directory)
       if (parsed.type === "name_query" && !forcedTarget) {
         const matches = searchServersByName(parsed.value);
-        if (matches.length === 1 && matches[0].score >= 100) {
+        if (matches.length === 1 && matches[0].score >= 120) {
           // Exactly one high-confidence match: scan it directly!
-          document.getElementById("serverInput").value = matches[0].code;
-          parsed.type = matches[0].code.includes(".") ? "direct_host" : "cfx_code";
-          parsed.value = matches[0].code;
-          if (parsed.type === "direct_host") {
-            const parts = matches[0].code.split(":");
-            parsed.host = parts[0];
-            parsed.port = parts[1] ? parseInt(parts[1], 10) : 30120;
-          }
+          selectAndScan(matches[0].code);
+          return;
         } else if (matches.length > 0) {
           btn.disabled = false;
           btnText.innerText = "Analyzovat";
           performNameSearch(parsed.value);
+          return;
+        } else {
+          btn.disabled = false;
+          btnText.innerText = "Analyzovat";
+          showError("Server nenalezen", `Žádný server neodpovídá zadanému názvu "${escapeHtml(parsed.value)}". Zadejte prosím kód serveru (např. 994ldb) nebo connect IP adresu.`);
           return;
         }
       }
@@ -2340,6 +2329,29 @@
         return SIDERP_SNAPSHOT;
       }
 
+      // ATTEMPT 6: Check if code exists in live database as fallback
+      const cached = getAllServersDirectory().find(s => s.code.toLowerCase() === code.toLowerCase());
+      if (cached) {
+        return {
+          Data: {
+            hostname: cached.name,
+            clients: cached.clients || 0,
+            sv_maxclients: cached.maxClients || 128,
+            gametype: cached.gametype || "Roleplay",
+            mapname: "San Andreas",
+            resources: [],
+            vars: {
+              sv_projectName: cached.name,
+              sv_projectDesc: cached.desc || "FiveM Server",
+              discord: cached.discord || "",
+              Discord: cached.discord || "",
+              tags: (cached.tags || []).join(", ")
+            },
+            isCachedFallback: true
+          }
+        };
+      }
+
       throw new Error(`Cfx.re server '${code}' neodpovídá nebo je offline. Ověřte kód serveru.`);
     }
 
@@ -2351,8 +2363,9 @@
       const q = query.trim().toLowerCase();
       const qWords = q.split(/\s+/).filter(w => w.length > 0);
       const scored = [];
+      const dir = getAllServersDirectory();
 
-      for (const s of SERVER_DIRECTORY) {
+      for (const s of dir) {
         const nameLow = (s.name || "").toLowerCase();
         const codeLow = (s.code || "").toLowerCase();
         const gameLow = (s.gametype || "").toLowerCase();
@@ -2361,23 +2374,26 @@
         const tagsLow = (s.tags || []).join(" ").toLowerCase();
 
         let score = 0;
-        if (codeLow === q) score += 150;
-        else if (codeLow.includes(q)) score += 80;
+        if (codeLow === q) score += 250;
+        else if (codeLow.includes(q)) score += 100;
 
-        if (nameLow === q) score += 130;
-        else if (nameLow.startsWith(q)) score += 100;
-        else if (nameLow.includes(q)) score += 70;
+        if (nameLow === q) score += 200;
+        else if (nameLow.startsWith(q)) score += 130;
+        else if (nameLow.includes(q)) score += 80;
 
         for (const w of qWords) {
-          if (nameLow.includes(w)) score += 40;
+          if (nameLow.includes(w)) score += 50;
           else if (descLow.includes(w) || gameLow.includes(w) || tagLow.includes(w) || tagsLow.includes(w)) score += 20;
         }
+
+        if (s.clients) score += Math.min(s.clients, 30);
+        if (s.isPreset) score += 15;
 
         if (score > 0) scored.push({ ...s, score });
       }
 
       scored.sort((a, b) => b.score - a.score);
-      return scored.slice(0, 24);
+      return scored.slice(0, 36);
     }
 
     function handleLiveInput(val) {
@@ -2392,7 +2408,7 @@
         return;
       }
 
-      const matches = searchServersByName(q).slice(0, 8);
+      const matches = searchServersByName(q).slice(0, 10);
       if (matches.length === 0) {
         dropdown.style.display = "none";
         return;
@@ -2411,6 +2427,7 @@
 
         const isCz = (m.country || "").includes("CZ");
         const tag = isCz ? `<span class="tag-cz">CZ/SK</span>` : `<span class="tag-global">GLOBAL</span>`;
+        const playerDisplay = m.players || (m.clients !== undefined ? `${m.clients} hráčů` : "Online");
 
         item.innerHTML = `
           <div class="autocomplete-main">
@@ -2421,7 +2438,8 @@
             <div class="autocomplete-desc">${escapeHtml(m.desc || m.gametype || "")}</div>
           </div>
           <div class="autocomplete-meta">
-            <span class="server-code-pill font-mono">${m.code}</span>
+            <span class="online-pill" style="font-size: 0.68rem; padding: 0.15rem 0.45rem;">${escapeHtml(playerDisplay)}</span>
+            <span class="server-code-pill font-mono">${escapeHtml(m.code)}</span>
             <span class="btn-card-scan" style="font-size: 0.75rem;">Scan →</span>
           </div>
         `;
@@ -2530,8 +2548,8 @@
           </div>
 
           <div class="search-card-meta">
-            <span>Sloty: <strong>${s.players || "Online"}</strong></span>
-            <span>Mód: <strong>${s.gametype || "Roleplay"}</strong></span>
+            <span>Hráči / Sloty: <strong style="color: #00F0FF;">${escapeHtml(s.players || (s.clients !== undefined ? s.clients + '/' + (s.maxClients || 128) : 'Online'))}</strong></span>
+            <span>Mód: <strong>${escapeHtml(s.gametype || "Roleplay")}</strong></span>
           </div>
         `;
         grid.appendChild(card);
