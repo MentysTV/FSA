@@ -3,12 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>FSD PRO – FiveM Architecture, Anticheat & Resource Inspector</title>
   <meta name="description" content="FiveM scanner: detekce všech anticheatů, 100% výpis všech skriptů a MLO interiérů, Discord serveru a živého stavu serveru." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="servers_db.js"></script>
+  <script>
+    // FSD PRO Cache Buster & Automatic Redirect to Latest Version
+    (function() {
+      const APP_VERSION = "20261023_v5";
+      try {
+        const url = new URL(window.location.href);
+        if (url.searchParams.get("v") !== APP_VERSION) {
+          url.searchParams.set("v", APP_VERSION);
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(regs => {
+              regs.forEach(r => r.unregister());
+            });
+          }
+          if ('caches' in window) {
+            caches.keys().then(keys => {
+              keys.forEach(k => caches.delete(k));
+            });
+          }
+          window.location.replace(url.toString());
+        }
+      } catch (err) {
+        console.warn("Version sync notice:", err);
+      }
+    })();
+  </script>
+  <script src="servers_db.js?v=20261023_v5"></script>
   
   <style>
     :root {

@@ -3,6 +3,8 @@
 > **„Odhal technologie, které pohánějí FiveM servery.“**  
 > *„Discover the technology behind FiveM servers.“*
 
+🚀 **Živý web (Live App):** [https://mentystv.github.io/FSA/?v=20261023_v5](https://mentystv.github.io/FSA/?v=20261023_v5)
+
 FSD PRO je pokročilá full-stack webová aplikace navržená pro FiveM komunitu, vývojáře, administrátory a majitele GTA V Roleplay serverů. Aplikace analyzuje veřejně dostupná metadata herních serverů, identifikuje používané frameworky a skripty a vytváří detailní analytické reporty podložené nezávislými důkazy.
 
 ---
