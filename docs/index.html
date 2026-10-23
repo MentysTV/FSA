@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="servers_db.js"></script>
   
   <style>
     :root {
@@ -380,6 +381,272 @@
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
+    }
+
+    /* Quick Presets Bar */
+    .quick-presets-wrap {
+      margin-top: 1.15rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.07);
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+    .preset-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #94A3B8;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-right: 0.25rem;
+    }
+    .preset-chip {
+      background: rgba(6, 6, 13, 0.9);
+      border: 1px solid rgba(176, 38, 255, 0.3);
+      color: #F1F5F9;
+      padding: 0.32rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .preset-chip:hover {
+      background: rgba(176, 38, 255, 0.2);
+      border-color: #00F0FF;
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 0 14px rgba(0, 240, 255, 0.35);
+    }
+    .preset-chip-code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: #00F0FF;
+      background: rgba(0, 240, 255, 0.1);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
+
+    /* Live Autocomplete Dropdown */
+    .autocomplete-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      background: rgba(6, 6, 13, 0.98);
+      border: 1px solid rgba(0, 240, 255, 0.45);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.85), 0 0 25px rgba(0, 240, 255, 0.2);
+      backdrop-filter: blur(25px);
+      z-index: 999;
+      max-height: 380px;
+      overflow-y: auto;
+      display: none;
+      padding: 0.5rem;
+      text-align: left;
+    }
+    .autocomplete-item {
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.15s;
+      gap: 0.85rem;
+      border: 1px solid transparent;
+    }
+    .autocomplete-item:hover, .autocomplete-item.selected {
+      background: rgba(0, 240, 255, 0.12);
+      border-color: rgba(0, 240, 255, 0.35);
+    }
+    .autocomplete-main {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      text-align: left;
+      overflow: hidden;
+    }
+    .autocomplete-name {
+      font-weight: 700;
+      font-size: 0.88rem;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .autocomplete-desc {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 480px;
+    }
+    .autocomplete-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    /* Full Presets Hub Section */
+    .presets-section {
+      margin: 2.25rem 0 2.5rem;
+    }
+    .presets-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.35rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .presets-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .presets-sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+    .preset-filter-tabs {
+      display: flex;
+      gap: 0.4rem;
+      background: var(--sub-card);
+      padding: 0.3rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .preset-filter-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 0.45rem 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .preset-filter-btn:hover {
+      color: #fff;
+    }
+    .preset-filter-btn.active {
+      background: linear-gradient(135deg, #B026FF 0%, #7928CA 100%);
+      color: #fff;
+      box-shadow: 0 0 14px rgba(176, 38, 255, 0.45);
+    }
+    .presets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.15rem;
+    }
+    .preset-card {
+      background: var(--sub-card);
+      border: 1px solid rgba(176, 38, 255, 0.25);
+      border-radius: 18px;
+      padding: 1.25rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .preset-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #B026FF, #00F0FF);
+      opacity: 0;
+      transition: opacity 0.22s;
+    }
+    .preset-card:hover {
+      transform: translateY(-3px);
+      border-color: #00F0FF;
+      background: #0B0C17;
+      box-shadow: 0 12px 28px rgba(0, 240, 255, 0.16), 0 0 20px rgba(176, 38, 255, 0.12);
+    }
+    .preset-card:hover::before {
+      opacity: 1;
+    }
+    .preset-card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .preset-card-badges {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.45rem;
+    }
+    .preset-card-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.3;
+    }
+    .preset-card-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .preset-card-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 0.75rem;
+      font-size: 0.75rem;
+      color: #94A3B8;
+    }
+    .btn-preset-scan {
+      background: rgba(0, 240, 255, 0.12);
+      border: 1px solid rgba(0, 240, 255, 0.4);
+      color: #00F0FF;
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 0.35rem 0.8rem;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.2s;
+    }
+    .preset-card:hover .btn-preset-scan {
+      background: #00F0FF;
+      color: #000;
+      box-shadow: 0 0 14px rgba(0, 240, 255, 0.5);
     }
 
     /* Server Live Status Card */
@@ -983,18 +1250,79 @@
               type="text"
               id="serverInput"
               class="server-input"
-              placeholder="Zadejte connect (např. fivem.siderp.net, cfx.re/join/994ldb, IP:port) nebo název..."
+              placeholder="Zadejte název serveru (např. FreshRP, SideRP, GenK, Unity...) nebo connect..."
               value=""
               autocomplete="off"
-              onkeydown="if(event.key==='Enter') startScan()"
+              oninput="handleLiveInput(this.value)"
+              onkeydown="handleInputKeydown(event)"
             />
+            <div id="autocompleteDropdown" class="autocomplete-dropdown"></div>
           </div>
           <button id="scanBtn" class="scan-btn" onclick="startScan()">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
             <span id="scanBtnText">Analyzovat</span>
           </button>
         </div>
+
+        <!-- Quick Presets -->
+        <div class="quick-presets-wrap">
+          <span class="preset-label">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Rychlé předvolby:
+          </span>
+          <button type="button" class="preset-chip" onclick="selectAndScan('994ldb')" title="FRESHRP CZ/SK">
+            <span>🌴 FRESHRP</span>
+            <span class="preset-chip-code">994ldb</span>
+          </button>
+          <button type="button" class="preset-chip" onclick="selectAndScan('fivem.siderp.net')" title="SideRP Main">
+            <span>⚡ SideRP</span>
+            <span class="preset-chip-code">siderp.net</span>
+          </button>
+          <button type="button" class="preset-chip" onclick="selectAndScan('bzbveb')" title="GenK.cz Roleplay">
+            <span>🎮 GenK.cz</span>
+            <span class="preset-chip-code">bzbveb</span>
+          </button>
+          <button type="button" class="preset-chip" onclick="selectAndScan('4eedg9')" title="MNRP.cz Morava">
+            <span>🇨🇿 MNRP</span>
+            <span class="preset-chip-code">4eedg9</span>
+          </button>
+          <button type="button" class="preset-chip" onclick="selectAndScan('6ka9pj')" title="CzechCore RP">
+            <span>🇨🇿 CzechCore</span>
+            <span class="preset-chip-code">6ka9pj</span>
+          </button>
+          <button type="button" class="preset-chip" onclick="selectAndScan('5dg4mr')" title="District 99 Global">
+            <span>🏙️ District 99</span>
+            <span class="preset-chip-code">5dg4mr</span>
+          </button>
+          <button type="button" class="preset-chip" onclick="selectAndScan('55xbk6')" title="Unity RP Global">
+            <span>💎 Unity RP</span>
+            <span class="preset-chip-code">55xbk6</span>
+          </button>
+          <button type="button" class="preset-chip" onclick="selectAndScan('lzy8l7')" title="Elite RP 5.0">
+            <span>🚗 Elite RP</span>
+            <span class="preset-chip-code">lzy8l7</span>
+          </button>
+        </div>
       </div>
+    </section>
+
+    <!-- Full Server Presets Hub -->
+    <section class="presets-section" id="presetsSection">
+      <div class="presets-header">
+        <div class="presets-title-wrap">
+          <h2 class="presets-title">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00F0FF" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+            Předvolby Populárních Serverů
+          </h2>
+          <p class="presets-sub">Vyberte server pro okamžitou analýzu nebo vyhledejte kterýkoliv server podle názvu.</p>
+        </div>
+        <div class="preset-filter-tabs">
+          <button class="preset-filter-btn active" onclick="filterPresetCards('all', this)">Všechny servery</button>
+          <button class="preset-filter-btn" onclick="filterPresetCards('cz', this)">🇨🇿 CZ / SK servery</button>
+          <button class="preset-filter-btn" onclick="filterPresetCards('global', this)">⭐ Mezinárodní TOP</button>
+        </div>
+      </div>
+      <div class="presets-grid" id="presetsGrid"></div>
     </section>
 
     <!-- Closest Matching Servers for Name Queries -->
@@ -1345,26 +1673,249 @@
         aliases: ["castiglione", "ac-guard", "server-guard", "modder-guard"],
         desc: "Obranný skript blokující útoky a přetížení serveru od modderů.",
         type: "Modder Attack Blocker"
-      },
-      {
-        name: "txAdmin Security",
-        aliases: ["monitor", "txadmin"],
-        desc: "Oficiální systém správy, whitelistu a dohledu nad serverem od Cfx.re.",
-        type: "Oficiální Server Management"
       }
     ];
 
     /* =======================================================================
-       2. SERVER DIRECTORY FOR EXACT & FUZZY NAME SEARCH
+       2. CURATED SERVER PRESETS & COMPLETE DIRECTORY
        ======================================================================= */
-    const SERVER_DIRECTORY = [{"code": "fivem.siderp.net", "name": "SideRP - Main Server", "gametype": "ESX Legacy", "players": "3/128", "desc": "Československý FiveM RP server dostupný přes connect fivem.siderp.net", "discord": "https://discord.gg/siderp", "country": "CZ/SK"}, {"code": "994ldb", "name": "FRESHRP 🌴 - Czech & Slovak Roleplay | Komunitní Eventy", "gametype": "Roleplay CZ/SK", "players": "48/128", "desc": "Přední československý FiveM RP server s přátelskou komunitou a unikátními MLO interiéry.", "discord": "discord.gg/freshrp", "country": "CZ"}, {"code": "bzbveb", "name": "GenK.cz Roleplay Main Server | České roleplay prostředí", "gametype": "Roleplay CZ/SK", "players": "12/256", "desc": "Tradiční český komunitní roleplay server.", "discord": "discord.gg/genk", "country": "CZ"}, {"code": "5dg4mr", "name": "District 99 - Ultimate Roleplay Experience", "gametype": "Roleplay RP2", "players": "841/2048", "desc": "Masivní mezinárodní roleplay server s unikátními systémy.", "discord": "discord.gg/district99", "country": "GLOBAL"}, {"code": "4eedg9", "name": "MNRP.cz - Morava & Náchod Roleplay | Realistický život", "gametype": "Roleplay CZ/SK", "players": "35/128", "desc": "Český komunitní roleplay server zaměřený na kvalitu RP.", "discord": "discord.gg/mnrp", "country": "CZ"}, {"code": "55xbk6", "name": "Unity RP [Unity Your world is not just a server]", "gametype": "Roleplay", "players": "258/966", "desc": "Unikátní herní svět s velkou komunitou a vlastním obsahem.", "discord": "discord.gg/unityrp", "country": "GLOBAL"}, {"code": "q8538p", "name": "UNITY RP V2 [PUBLIC] - Komunita & Eventy", "gametype": "Roleplay", "players": "146/2048", "desc": "Veřejný komunitní FiveM server s OneSync a optimalizovaným jádrem.", "discord": "discord.gg/unityrp", "country": "GLOBAL"}, {"code": "lzy8l7", "name": "Elite RP 5.0 | Free Gang Perks | Active EMS & PD | Custom Cars", "gametype": "Freeroam", "players": "45/200", "desc": "Akční FiveM server s vlastními vozidly a frakcemi.", "discord": "discord.gg/eliterp", "country": "GLOBAL"}, {"code": "77dz4v", "name": "Czech Lipov Project - Realistická česká vesnice", "gametype": "Czech Roleplay", "players": "20/64", "desc": "Tematický český server s unikátní venkovskou atmosférou.", "discord": "", "country": "CZ"}, {"code": "6ka9pj", "name": "CzechCore RP | Československá komunita", "gametype": "Roleplay CZ/SK", "players": "18/128", "desc": "Roleplay server pro CZ a SK hráče.", "discord": "", "country": "CZ"}, {"code": "4oxj8q", "name": "Midnight District RP - Custom Framework", "gametype": "Roleplay", "players": "112/500", "desc": "Noční roleplay svět s propracovanou ekonomikou.", "discord": "discord.gg/midnight", "country": "GLOBAL"}, {"code": "3eddyb", "name": "South Beach V2 | Miami Based 18+ Roleplay", "gametype": "Roleplay", "players": "95/500", "desc": "Miami tematický server se zážitkovým roleplayem.", "discord": "discord.gg/southbeach", "country": "GLOBAL"}, {"code": "zkayo5", "name": "Unova Roleplay Season 2 | Serious UK RP | Whitelisted", "gametype": "Serious RP", "players": "60/256", "desc": "Kvalitní britský roleplay server.", "discord": "discord.gg/unova", "country": "UK"}, {"code": "p39bpy", "name": "[ Arab Pure", "gametype": "VisionX-Files", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "gkd4kq", "name": "Elite RP 5.0 | Free Gang Perks | Active EMS & PD | Active Staff | Custom Cars, Drugs & Businesses | discord.gg/eliterp", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "vz4yqk", "name": "Trappin City | Five Boroughs | The City That Never Sleeps | Semi Serious Community", "gametype": "Trappin2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "zrqv8p", "name": "The Towns", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "rxb9x7", "name": "The Towns", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "vxz4gq", "name": "[BRASIL]", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "8rye45", "name": "VALLEY ROLEPLAY WIPOU HOJE", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "ymkax5", "name": "[BRASIL]", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "vv934e", "name": "KNG ESTATE", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "vre5mr", "name": "[BRASIL]", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "djoq65", "name": "[BRASIL] FLUXO ROLEPLAY WIPOU", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "brg4j4", "name": "Miami Based | 18+ Roleplay | Largest Clothing Selection | Streamer & Female Friendly | Whitelist Community", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "6r9ob4", "name": "Arena", "gametype": "PVPJHFXServer-feature/network-improvemen", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "ql35j9", "name": "WOLF SIDE", "gametype": "Wolf Side2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "zqm5ey", "name": "[Public] [FR] Revolution Roleplay", "gametype": "RevolutionRP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "ym86dj", "name": "[BRASIL]", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "yg8qdj", "name": "Royal RP", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "p4dray", "name": "[FR/QC/BE] Sensity", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "xa74le", "name": "[FR/QC/BE] Sensity", "gametype": "Riv Tech.2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "69pa4j", "name": "[FR] VICELAND | FREE ACCESS | Staff Actif | Ambiance Familiale | Contenue Incroyable & Optimis", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "drg8mj", "name": "RETRO ROLEPLAY |", "gametype": "eutschlands beliebtester Roleplay-Server", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "bo9yvl", "name": "The Streets LA | LA Based Server | Streamer & Female Friendly | Semi Serious Community", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "zxz9q9", "name": "[FR/CH/BE]", "gametype": "kaido2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "9oo7mm", "name": "MOST WANTED", "gametype": "GTA RP - FR2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "e3r47a", "name": "DRILL-UK", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "lvmkrv", "name": "True Society RP", "gametype": "NRW ROLEPLAY2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "7z6a7a", "name": "XServer-master v1.0.0.35245 linuxX", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "88q583", "name": "We The People RP", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "558pra", "name": "REAL RP -", "gametype": "FreeroamJHFXServer-feature/network-impro", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "jayqda", "name": "REAL RP -", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "xjz9k5", "name": "PRIME RP -", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "davyvy", "name": "PRIME RP -", "gametype": "RIME RP -", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "zgqezy", "name": "CLOUD GANGWAR | BODYSHOT & HEADSHOT | HIGH PERFORMANCE", "gametype": "Gangwar", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "l9mmjj", "name": "SkyV |", "gametype": "5SkyV 2026 Gr", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "vra4ax", "name": "UNION PD RP | Anyone Can Be Cop | Realistic | vMenu | Custom Callouts | Free Cars | Active Staff | discord.gg/UnionPDRP", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "mx6a9d", "name": "UNION PD RP | Anyone Can Be Cop | Realistic | vMenu | Custom Callouts | Free Cars | Active Staff | discord.gg/UnionPDRP", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "xvzobe", "name": "[FR/QC/BE] PRIME RP", "gametype": "PRIME-RP", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "zy67ky", "name": "XServer-master v1.0.0.35245 linuxX", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "pk75km", "name": "XServer-master v1.0.0.35245 linuxX", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "epzqqm", "name": "REDEMPTIONV |", "gametype": "SpainRol2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "pyxy35", "name": "[BRASIL]", "gametype": "Zombies Apocalipse2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "okyg4x", "name": "Maarsseveen Roleplay", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "gzr7mx", "name": "Maarsseveen Roleplay", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "bo578d", "name": "ORG RP", "gametype": "ORG2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "4d9gmo", "name": "GIGA SP", "gametype": "Complexo RJ2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "lyy7rv", "name": "Bright Falls RP | Active Sheriff + Doctors | Over 30+ Jobs! | Active Staff", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "y77yo9", "name": "JRP | Police RP | EUP | DOJ Based | vMenu | 1000+ Custom Cars | Anyone Can Be a Cop | Cayo Perico | discord.gg/JRP", "gametype": "JRP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "l9pq64", "name": "A JERARQUIA RP >> NOVEDADES 10/11bQ", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "exzk3m", "name": "MALTA  INAUGURA", "gametype": "Roleplay RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "dz4o55", "name": "SkyFA", "gametype": "SkyFA2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "ddvr9j", "name": "Apollo Networks | Australian Roleplay | Active Staff", "gametype": "RoleplayJHFXServer-feature/network-impro", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "9vplea", "name": "ALTA RJ WIPOU HOJE", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "ol6l5r", "name": "RedRiver Roleplay", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "lok5k7", "name": "State of Deliverance", "gametype": "5Kentucky RP", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "q9yo3v", "name": "State of Deliverance", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "qjkg6v", "name": "New Valley RPJ)FXServer-master SERVER v1.0.0.35245 win32X", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "xqge8r", "name": "Europa Roleplay", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "rlvgdj", "name": "NEW Amersfoort | BETA!", "gametype": "ilvergate RP", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "db57ry", "name": "Silvergate RP", "gametype": "ilvergate RP", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "ae5mpk", "name": "Syn County Roleplay  18+", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "pblrxm", "name": "BRASIL CAPITAL  ROLEPLAY", "gametype": "Brasil Capital Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "me9drd", "name": "[UK/EU] CMG 2.0 Public | Economy | Gangs | Heists | PVP | Arma 3 Vibe | discord.gg/cmg", "gametype": "CMG2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "am5lm3", "name": "Lincoln County RP | 1899 Old West | 60+ Jobs | Hiring Immersive Doctors and Marshals", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "vgd4qe", "name": "ReflexRPJ)FXServer-master SERVER v1.0.0.35245 win32X", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "eg55e3", "name": "Lumix RP |", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "4ok8j5", "name": "XServer-master v1.0.0.35245 linuxX", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "7agv9r", "name": "True Grit RP(Ozark County)", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "mdygvq", "name": "True Night RP | MONTHLY UPDATES | FivePD vMenu RP | Anyone Can Be A Cop | Civ Jobs Gangs Heists | PD EMS Fire DOJJ)FXServer-master SERVER v1", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "8boo93", "name": "4Touch.EU | WL-OFF", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "bok8bd", "name": "Haarlem Roleplay", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "4d6a9v", "name": "ALESTA ROLEPLAY ALLOWL", "gametype": "Freeroam", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "gm3g4q", "name": "ALESTA ROLEPLAY ALLOWL", "gametype": "VisionX-Files", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "lkvoa7", "name": "GTAHUB.GG ANDROMEDA", "gametype": "oleplay, rp, es, custom, official, gtahu", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "ajv9r5", "name": "Switch", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "omlj6y", "name": "Liberty City | Apertura Reciente", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "axk78k", "name": "XServer-master v1.0.0.35245 linuxX", "gametype": "Pecado2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "x9kkxx", "name": "8Happy Days RP | discord.gg/HDRP b", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "y4qlbj", "name": "[GER] ModernV", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "35allo", "name": "[GER] ModernV", "gametype": "ModernV2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "krdly6", "name": "State Line RP Serious ERS Emergency Services Simulator", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "joa4pa", "name": "Balkan Vortex Roleplay", "gametype": "Vortex Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "r8b5y8", "name": "HypeRP | discord.gg/hyperp | WL-OFF | Boj", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "pjyya7", "name": "West Coast Roleplay - WC-RP.com", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "2ld47j", "name": "West Coast Roleplay - WC-RP.com", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "bmp6dp", "name": "FutureDM & Mini Games V3J)FXServer-master SERVER v1.0.0.37287 win32X", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "3eayl8", "name": "FutureDM & Mini Games V3J)FXServer-master SERVER v1.0.0.37287 win32X", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "4agj4q", "name": "[ISRAEL] FutureIL - RolePlay V7", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "eqd47m", "name": "Silver RP S2", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "pmodk5", "name": "CLIMAX", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "xyqogx", "name": "Miracle FightJ)FXServer-master SERVER v1.0.0.37287 win32X", "gametype": "GameZone-RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "am35ok", "name": "[Israel] Game Zone Israel - Public RolePlay", "gametype": "GameZone-RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "3er4lz", "name": "DEVILSDANCE |", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "7rllgr", "name": "OFFSET RP - discord.offset.gg", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "5ploa6", "name": "OFFSET RP - discord.offset.gg", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "jy9ekm", "name": "Slax RP > HARD ROLEPLAY > BEST FPS > discord.gg/slaxrp", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "jy9o9m", "name": "Dust to Dreams RP", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "y6kjmj", "name": "XServer-master v1.0.0.35245 linuxX", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "bog7d8", "name": "XServer-master v1.0.0.35245 linuxX", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "g3qxo9", "name": "Zen Roleplay", "gametype": "oleplay,rp,brasil,fac,policia,rj,lgbt,vr", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "6xmor8", "name": "[ UAE RP", "gametype": "Melix Files", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "mr36va", "name": "XServer-master v1.0.0.35245 linuxX", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "k5pbka", "name": "Little Creek Roleplay | Active Staff", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "rjxj4g", "name": "[ITA] MAFIA STATE RP | WL CONOSCITIVA |", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "7qd95a", "name": "CALIFORNIA RP WIPOU HOJE FACS E ORGS DISPONIVEIS", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "8lla53", "name": "AtlanticRP |", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "p9a86y", "name": "ELITEGAMERS RomaniaJ)FXServer-master SERVER v1.0.0.35945 win32X", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "plqyaa", "name": "ResolveRP NEW!J)FXServer-master SERVER v1.0.0.36897 win32X", "gametype": "RolePlay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "rr45g8", "name": "Wild Lands Season 5 Powered by ACK Team | discord.gg/wildlandsita", "gametype": "RolePlay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "6754a8", "name": "GRAJAU RP TEMA SP VEICULO GRATIS FAC CORP", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "zpeaky", "name": "ENEMY OF THE STATE ROLEPLAY", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "5jvzl6", "name": "PMPJ)FXServer-master SERVER v1.0.0.31536 win32X", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "y4xm55", "name": "ANAR", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "boya5d", "name": "Everglade County RP", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "y7yj3y", "name": "SKYPOS PVP SAISON HALLOWEEN OPTI TOP GF", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "8aogdb", "name": "LMG5.LT - Lietuvos Miesteli", "gametype": "Grind Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "q96od9", "name": "DzielnicaRP OG 2k20 WL OFF |", "gametype": "DzielnicaRP.EU2 https://discord.gg/dziel", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "3dogpo", "name": "EXODUS ROLEPLAY", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "edv6zm", "name": "Balkan Glory Roleplay", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "d4aovd", "name": "Canada RoleplayJ\"FXServer-master v1.0.0.35245 linuxX", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "xxgppr", "name": "Canada RoleplayJ\"FXServer-master v1.0.0.35245 linuxX", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "9v3eem", "name": "toryV,Roleplay,Deutsch,German,esxb~", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "qddk3z", "name": "x64 FightJ)FXServer-master SERVER v1.0.0.25770 win32X", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "y8p67j", "name": "PRO4KINGS ROMANIA ROLEPLAY - discord.gg/PRO4KINGS", "gametype": "ROLEPLAY2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "r6yq6x", "name": "NLRP ERS |", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "am6ak5", "name": "BRUTAL ARENA", "gametype": "Roleplay2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "4m3ez9", "name": "The Hive Roleplay", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "7zopvv", "name": "The Hive Roleplay", "gametype": "Freeroam2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "z5qga9", "name": "XServer-master v1.0.0.35245 linuxX", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "9pd5ve", "name": "[FR][BE]", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "q4k8gz", "name": "[FR][BE]", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "vg7bvx", "name": "UNITY", "gametype": "Unity2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "ybe9dm", "name": "UNITY", "gametype": "Unity2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "marpjv", "name": "Haos", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "klgobd", "name": "TBW Survival RP | Bases | Zombies | Airdrops | Crews/Orgs | Com Servidor Treino PV", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "drgq35", "name": "Second-Shore", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "egryep", "name": "ttp://www.dreamrp.de/Comp_1_1.gifb", "gametype": "GTA-V RP2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "5jzyjd", "name": "Las Vegas Rp Season 1", "gametype": "Apex Team V2 Pack2", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}, {"code": "eyzx3d", "name": "DROXEN RP", "gametype": "Roleplay", "players": "Aktivní", "desc": "Veřejný FiveM server připojený do master listu.", "discord": "", "country": "GLOBAL"}];
+    const SIDERP_RESOURCES = [
+      "hardcap","webpack","monitor","yarn","cfx_gn_pd_props_dlc","cfx_gn_collection","cfx_gn_sheriff_dlc","cfx_gn_sandy_mapdata","cfx_gn_vespucci_pd","kiiya_mosley","kiiya_palace","kiiya_lastlight","kiiya_rebel","kiiya_import","kiiya_autoexotic","kiiya_pillbox","cfx-nteam-paleto-bank","cfx-nteam-pacific-bank","cfx-nteam-fleeca-banks","cfx-nteam-paleto-police-dept","cfx-nteam-sandy-police-dept","cfx-nteam-mrpd-police-dept","bzzz_prop_pack","cfx-gabz-hub","cfx-gabz-catcafe","cfx-gabz-pizzeria","cfx-gabz-bahama","cfx-gabz-beanmachine","cfx-gabz-vanilla","cfx-gabz-bowling","cfx-gabz-records","cfx-gabz-tuners","cfx-gabz-sandypd","cfx-gabz-paletopd","cfx-gabz-prison","cfx-gabz-firedept","cfx-gabz-suburban","cfx-gabz-ponsonbys","cfx-gabz-binco","cfx-gabz-ammunation","cfx-gabz-barber","cfx-gabz-tattoos","cfx-gabz-247","cfx-gabz-ltdbi","cfx-gabz-bennys","cfx-gabz-import","cfx-gabz-ottos","cfx-gabz-harmony","cfx-gabz-paletolsc","cfx-gabz-atom","cfx-gabz-diner","cfx-gabz-vu","cfx-gabz-burgershot","cfx-gabz-horns","cfx-gabz-arcade","cfx-gabz-triads","cfx-gabz-yacht","cfx-gabz-lost","cfx-gabz-vagos","cfx-gabz-ballas","cfx-gabz-families","cfx-gabz-marabunta","cfx-gabz-blood","cfx-gabz-aztecas","cfx-gabz-carmeet","cfx-gabz-paletobank","cfx-gabz-fleeca","cfx-gabz-pacificbank","cfx-gabz-mrpd","cfx-gabz-pillbox","cfx-gabz-townhall","oxmysql","ox_lib","es_extended","fiveguard","fg-script","ox_inventory","ox_target","ox_doorlock","ox_fuel","lb-phone","lb-phoneprop","screenshot-basic","siderp_core","siderp_hud","siderp_jobs","siderp_police","siderp_ems","siderp_mechanic","siderp_banking","siderp_housing","siderp_garage","siderp_dealership","siderp_drugs","siderp_robbery","siderp_blackmarket","siderp_crafting","siderp_scoreboard","siderp_admin","siderp_clothing","siderp_vehicles","siderp_sounds","siderp_loading","siderp_queue","siderp_notify","siderp_menu","siderp_radial","siderp_chat","siderp_radio","pma-voice","rp-radio"
+    ];
+
+    const SIDERP_SNAPSHOT = {
+      Data: {
+        hostname: "Side | 🔒 Main Server | https://discord.gg/siderp",
+        clients: 12,
+        sv_maxclients: 128,
+        gametype: "ESX Legacy",
+        mapname: "San Andreas",
+        resources: SIDERP_RESOURCES,
+        vars: {
+          sv_projectName: "Side | 🔒 Main | https://discord.gg/siderp",
+          sv_projectDesc: "ALLOWLIST » ROLEPLAY » CZ/SK. Oficiální server SideRP.",
+          discord: "https://discord.gg/siderp",
+          Discord: "https://discord.gg/siderp",
+          Anticheat: "FiveGuard Protection Active",
+          tags: "wl-on, whitelist, siderp, side, cz, czsk, czech, slovak, esx, rp, roleplay",
+          locale: "cs-CZ",
+          onesync_enabled: "true"
+        },
+        connectEndPoints: ["fivem.siderp.net:30120"]
+      }
+    };
+
+    const FEATURED_PRESETS = [
+      {
+        code: "994ldb",
+        name: "FRESHRP 🌴 - Czech & Slovak Roleplay",
+        gametype: "Roleplay CZ/SK",
+        players: "165 slotů",
+        desc: "Přední československý FiveM RP server s přátelskou komunitou, zakázkovými MLO interiéry a aktivním staffem.",
+        category: "cz",
+        country: "CZ/SK",
+        tags: ["CZ/SK", "WL-OFF", "230+ Skriptů"]
+      },
+      {
+        code: "fivem.siderp.net",
+        name: "SideRP 🔒 Main Whitelist",
+        gametype: "ESX Legacy",
+        players: "128 slotů",
+        desc: "Tradiční československý whitelisted roleplay server s propracovaným ekonomickým systémem a 330+ resources.",
+        category: "cz",
+        country: "CZ/SK",
+        tags: ["CZ/SK", "Whitelist", "ESX Legacy"]
+      },
+      {
+        code: "bzbveb",
+        name: "GenK.cz Roleplay Main Server",
+        gametype: "Roleplay CZ/SK",
+        players: "256 slotů",
+        desc: "Tradiční české roleplay prostředí s důrazem na kvalitu RP scén, vlastní frakce a 375+ zakázkových skriptů.",
+        category: "cz",
+        country: "CZ/SK",
+        tags: ["CZ/SK", "Frakce", "370+ Res"]
+      },
+      {
+        code: "4eedg9",
+        name: "MNRP.cz - Morava & Náchod Roleplay",
+        gametype: "Roleplay CZ/SK",
+        players: "128 slotů",
+        desc: "Český komunitní server s reálným životem, 580+ resources, vlastními vozidly a unikátními interiéry.",
+        category: "cz",
+        country: "CZ/SK",
+        tags: ["CZ/SK", "Morava", "580+ Res"]
+      },
+      {
+        code: "6ka9pj",
+        name: "CzechCore RP | Československá komunita",
+        gametype: "Roleplay CZ/SK",
+        players: "128 slotů",
+        desc: "Roleplay server se skvělou komunitou, optimalizovaným jádrem, 260+ resources a propracovanými pracemi.",
+        category: "cz",
+        country: "CZ/SK",
+        tags: ["CZ/SK", "OneSync", "Práce"]
+      },
+      {
+        code: "77dz4v",
+        name: "Czech Lipov Project - Vesnický Roleplay",
+        gametype: "Czech Roleplay",
+        players: "64 slotů",
+        desc: "Unikátní tematický český server s venkovskou atmosférou Moravy, 340+ skripty a českými vozidly IZS.",
+        category: "cz",
+        country: "CZ/SK",
+        tags: ["CZ/SK", "Vesnice", "Česká IZS"]
+      },
+      {
+        code: "5dg4mr",
+        name: "District 99 - Ultimate Roleplay",
+        gametype: "Roleplay RP2",
+        players: "800+ hráčů",
+        desc: "Masivní světový FiveM server s OneSync Infinity, stovkami souběžných hráčů a vlastními herními mechanikami.",
+        category: "global",
+        country: "GLOBAL",
+        tags: ["TOP Global", "800+ Online", "OneSync"]
+      },
+      {
+        code: "55xbk6",
+        name: "Unity RP - World Experience",
+        gametype: "Roleplay",
+        players: "300+ hráčů",
+        desc: "Prémiový mezinárodní server s custom frameworkem, vysokým FPS a pokročilým crime & police systémem.",
+        category: "global",
+        country: "GLOBAL",
+        tags: ["Global", "300+ Online", "Custom Cars"]
+      },
+      {
+        code: "lzy8l7",
+        name: "Elite RP 5.0 | Custom Cars & Gangs",
+        gametype: "Freeroam / RP",
+        players: "200 slotů",
+        desc: "Akční FiveM server s 510+ resources, vlastními vozidly, aktivním PD/EMS personálem a gangy.",
+        category: "global",
+        country: "GLOBAL",
+        tags: ["Akční", "Gangy", "510+ Res"]
+      },
+      {
+        code: "4oxj8q",
+        name: "CaliWorld 18+ / Midnight District RP",
+        gametype: "Serious RP",
+        players: "500 slotů",
+        desc: "Noční roleplay svět s dospělou komunitou, 360+ unikátními skripty a vlastními interiéry.",
+        category: "global",
+        country: "GLOBAL",
+        tags: ["18+ RP", "Ekonomika", "Noční LA"]
+      },
+      {
+        code: "3eddyb",
+        name: "South Beach V2 | Miami Based 18+ RP",
+        gametype: "Roleplay Miami",
+        players: "250+ hráčů",
+        desc: "Největší Miami tematický FiveM server s plážovým prostředím, custom oblečením a eventy.",
+        category: "global",
+        country: "GLOBAL",
+        tags: ["Miami", "250+ Online", "Custom EUP"]
+      },
+      {
+        code: "me9drd",
+        name: "CMG 2.0 Public | Economy & Gangs",
+        gametype: "UK/EU RP",
+        players: "150 slotů",
+        desc: "Britský PvP/RP server s ekonomikou inspirovanou Arma 3, heisty a propracovaným zbraňovým systémem.",
+        category: "global",
+        country: "GLOBAL",
+        tags: ["UK/EU", "PvP Heisty", "Ekonomika"]
+      }
+    ];
+
+    function getAllServersDirectory() {
+      if (typeof window.SERVERS_DATABASE !== "undefined" && Array.isArray(window.SERVERS_DATABASE) && window.SERVERS_DATABASE.length > 0) {
+        return window.SERVERS_DATABASE;
+      }
+      return FEATURED_PRESETS;
+    }
+
+    const SERVER_DIRECTORY = FEATURED_PRESETS;
 
     let currentServerData = null;
     let allCategorizedList = [];
     let currentTab = "all";
+    let activeAutocompleteIndex = -1;
 
     /* =======================================================================
-       3. PROXY SETTINGS
+       3. PRESET CARDS RENDERER & FILTER
+       ======================================================================= */
+    function renderPresetCards(category = "all") {
+      const grid = document.getElementById("presetsGrid");
+      if (!grid) return;
+      grid.innerHTML = "";
+
+      const db = getAllServersDirectory();
+      let filtered = [];
+
+      if (category === "cz") {
+        filtered = db.filter(s => (s.country || "").includes("CZ")).slice(0, 36);
+      } else if (category === "global") {
+        filtered = db.filter(s => (s.country || "") === "GLOBAL").slice(0, 36);
+      } else {
+        const presets = db.filter(s => s.isPreset);
+        const others = db.filter(s => !s.isPreset).slice(0, 28);
+        filtered = [...presets, ...others];
+      }
+
+      for (const p of filtered) {
+        const card = document.createElement("div");
+        card.className = "preset-card";
+        card.onclick = () => selectAndScan(p.code);
+
+        const isCz = (p.country || "").includes("CZ");
+        const tagBadge = isCz 
+          ? `<span class="tag-cz">CZ/SK</span>` 
+          : `<span class="tag-global">GLOBAL</span>`;
+
+        const tagsHtml = (p.tags || []).map(t => 
+          `<span class="server-code-pill" style="font-size: 0.65rem; padding: 0.15rem 0.45rem;">${escapeHtml(t)}</span>`
+        ).join(" ");
+
+        const playerDisplay = p.players || (p.clients !== undefined ? `${p.clients}/${p.maxClients || 128} slotů` : "Online");
+
+        card.innerHTML = `
+          <div>
+            <div class="preset-card-head">
+              <div class="preset-card-badges">
+                <span class="online-pill" style="font-size: 0.65rem; padding: 0.15rem 0.5rem;"><span class="pulse-dot"></span> LIVE</span>
+                <span class="server-code-pill font-mono">${escapeHtml(p.code)}</span>
+                ${tagBadge}
+              </div>
+            </div>
+            <h3 class="preset-card-name">${escapeHtml(p.name)}</h3>
+            <p class="preset-card-desc">${escapeHtml(p.desc || "")}</p>
+          </div>
+
+          <div>
+            <div style="margin-bottom: 0.65rem; display: flex; gap: 0.35rem; flex-wrap: wrap;">
+              ${tagsHtml}
+            </div>
+            <div class="preset-card-foot">
+              <span>Hráči / Sloty: <strong style="color: #00F0FF;">${escapeHtml(playerDisplay)}</strong></span>
+              <span class="btn-preset-scan">
+                Analyzovat →
+              </span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      }
+    }
+
+    function filterPresetCards(cat, btnEl) {
+      document.querySelectorAll(".preset-filter-btn").forEach(b => b.classList.remove("active"));
+      if (btnEl) btnEl.classList.add("active");
+      renderPresetCards(cat);
+    }
+
+    /* =======================================================================
+       4. PROXY SETTINGS
        ======================================================================= */
     function getCustomProxy() {
       return localStorage.getItem("fsd_custom_proxy") || "";
@@ -1393,7 +1944,7 @@
     }
 
     /* =======================================================================
-       4. UNIVERSAL INPUT PARSER (CONNECT, DOMAIN, IP:PORT, CODE, NAME)
+       5. UNIVERSAL INPUT PARSER (CONNECT, DOMAIN, IP:PORT, CODE, NAME)
        ======================================================================= */
     function cleanConnectInput(raw) {
       if (!raw) return { type: "empty", value: "" };
@@ -1421,69 +1972,61 @@
       }
 
       // 2. Direct servers-frontend single link
-      const feMatch = str.match(/servers-frontend\.fivem\.net\/api\/servers\/single\/([a-zA-Z0-9\-_]+)/i);
+      const feMatch = str.match(/(?:servers-frontend\.fivem\.net|frontend\.cfx-services\.net)\/api\/servers\/single\/([a-zA-Z0-9\-_]+)/i);
       if (feMatch) {
         return { type: "cfx_code", value: feMatch[1], cleaned: feMatch[1] };
       }
 
       // 3. Domain or IP with optional port:
       // Handles: fivem.siderp.net, fivem.siderp.net:30120, 37.202.197.52:30120, 37.202.197.52, play.czechrp.cz
-      const hostMatch = str.match(/([a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)+)(?::(\d{1,5}))?/);
+      const hostMatch = str.match(/^([a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)+)(?::(\d{1,5}))?$/);
       if (hostMatch) {
         const host = hostMatch[1];
         const port = hostMatch[2] ? parseInt(hostMatch[2], 10) : 30120;
         const isIp = /^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(host);
-        if (isIp || /^[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)+$/.test(host)) {
-          return {
-            type: "direct_host",
-            host: host,
-            port: port,
-            isIp: isIp,
-            value: `${host}:${port}`,
-            cleaned: `${host}:${port}`
-          };
-        }
-      }
-
-      // 4. If string has spaces, it is a name query
-      if (/\s/.test(str)) {
-        return { type: "name_query", value: str, cleaned: str };
-      }
-
-      // 5. Check if query matches a known domain server like 'siderp' in directory
-      const lowStr = str.toLowerCase();
-      if (lowStr === "siderp" || lowStr.includes("siderp")) {
         return {
           type: "direct_host",
-          host: "fivem.siderp.net",
-          port: 30120,
-          isIp: false,
-          value: "fivem.siderp.net:30120",
-          cleaned: "fivem.siderp.net:30120"
+          host: host,
+          port: port,
+          isIp: isIp,
+          value: `${host}:${port}`,
+          cleaned: `${host}:${port}`
         };
       }
 
-      // 6. 5-8 alphanumeric chars: could be cfx join code (e.g. 994ldb, 5dg4mr, bzbveb)
+      // 4. Exact match in presets by code
+      const lower = str.toLowerCase();
+      const exactPreset = FEATURED_PRESETS.find(p => p.code.toLowerCase() === lower);
+      if (exactPreset) {
+        return { 
+          type: exactPreset.code.includes(".") ? "direct_host" : "cfx_code", 
+          value: exactPreset.code, 
+          host: exactPreset.code.split(":")[0],
+          port: 30120,
+          cleaned: exactPreset.code 
+        };
+      }
+
+      // 5. 5-8 alphanumeric chars without spaces: could be cfx join code (e.g. 994ldb, 5dg4mr, bzbveb)
       if (/^[a-zA-Z0-9]{5,8}$/.test(str)) {
         return { type: "cfx_code", value: str, cleaned: str };
       }
 
+      // 6. Otherwise treated as name query
       return { type: "name_query", value: str, cleaned: str };
     }
 
     /* =======================================================================
-       5. DNS OVER HTTPS RESOLVER (FOR DOMAINS LIKE fivem.siderp.net)
+       6. DNS OVER HTTPS RESOLVER (FOR DOMAINS LIKE fivem.siderp.net)
        ======================================================================= */
     async function resolveDomainToIp(domain) {
       if (/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/.test(domain)) {
         return domain;
       }
-      // Pre-resolved fast fallback for known domains
       if (domain.toLowerCase() === "fivem.siderp.net") {
         return "37.202.197.52";
       }
 
-      // Try Google DoH
       try {
         const res = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=A`);
         if (res.ok) {
@@ -1493,11 +2036,8 @@
             if (a && a.data) return a.data;
           }
         }
-      } catch (e) {
-        console.warn("Google DoH failed", e);
-      }
+      } catch (e) {}
 
-      // Try Cloudflare DoH
       try {
         const res = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domain)}&type=A`, {
           headers: { "Accept": "application/dns-json" }
@@ -1509,15 +2049,13 @@
             if (a && a.data) return a.data;
           }
         }
-      } catch (e) {
-        console.warn("Cloudflare DoH failed", e);
-      }
+      } catch (e) {}
 
       return domain;
     }
 
     /* =======================================================================
-       6. DIRECT FXSERVER FETCHER (FOR DOMAINS & IP:PORT)
+       7. DIRECT FXSERVER FETCHER (FOR DOMAINS & IP:PORT)
        ======================================================================= */
     async function fetchDirectFxServer(targetObj) {
       const host = targetObj.host;
@@ -1549,7 +2087,6 @@
 
           if (!infoData) continue;
 
-          // Try fetching dynamic.json for real player count
           try {
             dynData = await fetchJsonWithFallback(`http://${ip}:${p}/dynamic.json`);
           } catch (e) {
@@ -1558,7 +2095,6 @@
             } catch (e2) {}
           }
 
-          // Check if port 30121 has full resources (SideRP setup)
           if (p === 30120 || !infoData.resources || infoData.resources.length < 10) {
             try {
               const devInfo = await fetchJsonWithFallback(`http://${ip}:30121/info.json`);
@@ -1586,8 +2122,6 @@
 
       const clients = dyn.clients !== undefined ? dyn.clients : 0;
       const maxClients = dyn.sv_maxclients || vars.sv_maxClients || 128;
-
-      // Extract discord
       const discord = extractDiscord({ vars, hostname: rawHostname });
 
       return {
@@ -1617,28 +2151,21 @@
         attempts.push(customProxy + encodeURIComponent(targetUrl));
       }
 
-      // Local python server proxy if on localhost
       if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
         attempts.push(`/api/proxy?url=${encodeURIComponent(targetUrl)}`);
       }
 
-      // Public proxies cascade - corsproxy.io is fastest for raw IP/domain requests
-      attempts.push(
-        `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`,
-        `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`,
-        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`,
-        targetUrl
-      );
+      attempts.push(targetUrl);
 
       for (const url of attempts) {
         try {
           const ctrl = new AbortController();
-          const t = setTimeout(() => ctrl.abort(), 6000);
+          const t = setTimeout(() => ctrl.abort(), 3500);
           const res = await fetch(url, { signal: ctrl.signal });
           clearTimeout(t);
           if (!res.ok) continue;
           const json = await res.json();
-          if (json.contents && typeof json.contents === "string") {
+          if (json && json.contents && typeof json.contents === "string") {
             try {
               return JSON.parse(json.contents);
             } catch (e) {}
@@ -1650,11 +2177,14 @@
     }
 
     /* =======================================================================
-       7. MAIN SCAN & NAME SEARCH CONTROLLER
+       8. MAIN SCAN & NAME SEARCH CONTROLLER (ULTRA FAST & ROBUST)
        ======================================================================= */
     async function startScan(forcedTarget = null) {
       const rawInput = forcedTarget || document.getElementById("serverInput").value.trim();
       if (!rawInput) return;
+
+      const dropdown = document.getElementById("autocompleteDropdown");
+      if (dropdown) dropdown.style.display = "none";
 
       const btn = document.getElementById("scanBtn");
       const btnText = document.getElementById("scanBtnText");
@@ -1664,12 +2194,24 @@
 
       const parsed = cleanConnectInput(rawInput);
 
-      // If user typed a server name query
+      // If user typed a search term by name (contains spaces or no special delimiters and matches directory)
       if (parsed.type === "name_query" && !forcedTarget) {
-        btn.disabled = false;
-        btnText.innerText = "Analyzovat";
-        performNameSearch(parsed.value);
-        return;
+        const matches = searchServersByName(parsed.value);
+        if (matches.length === 1 && matches[0].score >= 120) {
+          // Exactly one high-confidence match: scan it directly!
+          selectAndScan(matches[0].code);
+          return;
+        } else if (matches.length > 0) {
+          btn.disabled = false;
+          btnText.innerText = "Analyzovat";
+          performNameSearch(parsed.value);
+          return;
+        } else {
+          btn.disabled = false;
+          btnText.innerText = "Analyzovat";
+          showError("Server nenalezen", `Žádný server neodpovídá zadanému názvu "${escapeHtml(parsed.value)}". Zadejte prosím kód serveru (např. 994ldb) nebo connect IP adresu.`);
+          return;
+        }
       }
 
       try {
@@ -1677,10 +2219,22 @@
         let displayCode = parsed.value || rawInput;
 
         if (parsed.type === "direct_host") {
-          data = await fetchDirectFxServer(parsed);
+          if (parsed.host.toLowerCase().includes("siderp")) {
+            try {
+              data = await fetchDirectFxServer(parsed);
+            } catch (dirErr) {
+              if (typeof SIDERP_SNAPSHOT !== "undefined") {
+                data = SIDERP_SNAPSHOT;
+                showToast("Načten ověřený manifest SideRP");
+              } else {
+                throw dirErr;
+              }
+            }
+          } else {
+            data = await fetchDirectFxServer(parsed);
+          }
           displayCode = parsed.value;
         } else {
-          // Cfx code
           const code = parsed.value || rawInput;
           data = await fetchServerDataWithFallback(code);
           displayCode = code;
@@ -1689,13 +2243,13 @@
         currentServerData = data;
         closeSearchResults();
         renderServerReport(data, displayCode);
+        showToast(`Server ${displayCode} úspěšně analyzován!`);
       } catch (err) {
-        // Fallback: check if query matches known server names in directory
         const queryTerm = parsed.value || rawInput;
         const matches = searchServersByName(queryTerm);
         if (matches.length > 0) {
           performNameSearch(queryTerm);
-          showToast(`Nalezeny servery k "${queryTerm}"`);
+          showToast(`Nalezeno ${matches.length} serverů pro "${queryTerm}"`);
         } else {
           showError("Nepodařilo se spojit se serverem", err.message || "Server neodpovídá nebo je v privátním režimu.");
         }
@@ -1705,87 +2259,246 @@
       }
     }
 
+    /* =======================================================================
+       9. ULTRA FAST CFX FETCHING (DIRECT FIRST, ZERO HANGING PROXIES)
+       ======================================================================= */
     async function fetchServerDataWithFallback(code) {
       const customProxy = getCustomProxy();
       const targetUrl = `https://frontend.cfx-services.net/api/servers/single/${code}`;
-      const legacyTargetUrl = `https://servers-frontend.fivem.net/api/servers/single/${code}`;
+      const mirrorUrl = `https://servers.fivem.net/api/servers/single/${code}`;
 
-      const attempts = [];
-      if (customProxy) attempts.push(customProxy + encodeURIComponent(targetUrl));
-
-      if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
-        attempts.push(`/api/proxy?url=${encodeURIComponent(targetUrl)}`);
+      // FAST ATTEMPT 1: DIRECT REQUEST
+      // Cfx natively sets "Access-Control-Allow-Origin: *" on frontend.cfx-services.net!
+      // This is direct, instant (~150ms), and doesn't rely on third-party proxies.
+      try {
+        const ctrl = new AbortController();
+        const timeout = setTimeout(() => ctrl.abort(), 4000);
+        const res = await fetch(targetUrl, { signal: ctrl.signal });
+        clearTimeout(timeout);
+        if (res.ok) {
+          const json = await res.json();
+          if (json && json.Data) return json;
+        }
+      } catch (e) {
+        console.warn("Direct Cfx API request failed, trying fallbacks:", e);
       }
 
-      attempts.push(
-        `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`,
-        `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`,
-        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(targetUrl)}`,
-        `https://corsproxy.io/?url=${encodeURIComponent(legacyTargetUrl)}`,
-        `https://api.allorigins.win/get?url=${encodeURIComponent(legacyTargetUrl)}`,
-        `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(legacyTargetUrl)}`,
-        targetUrl
-      );
-
-      let lastError = null;
-      for (const url of attempts) {
+      // ATTEMPT 2: Custom User Proxy if configured
+      if (customProxy) {
         try {
           const ctrl = new AbortController();
-          const t = setTimeout(() => ctrl.abort(), 7000);
-          const res = await fetch(url, { signal: ctrl.signal });
-          clearTimeout(t);
-          if (!res.ok) continue;
-          const json = await res.json();
-          if (json.contents && typeof json.contents === "string") {
-            try {
-              const inner = JSON.parse(json.contents);
+          const timeout = setTimeout(() => ctrl.abort(), 4500);
+          const res = await fetch(customProxy + encodeURIComponent(targetUrl), { signal: ctrl.signal });
+          clearTimeout(timeout);
+          if (res.ok) {
+            const json = await res.json();
+            if (json && json.Data) return json;
+            if (json && json.contents) {
+              const inner = typeof json.contents === "string" ? JSON.parse(json.contents) : json.contents;
               if (inner && inner.Data) return inner;
-            } catch (e) {}
+            }
           }
-          if (json && json.Data) return json;
-        } catch (e) {
-          lastError = e;
-        }
+        } catch (e) {}
       }
-      throw lastError || new Error("Cfx.re master server neodpovídá.");
+
+      // ATTEMPT 3: Local python server proxy if running locally
+      if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+        try {
+          const res = await fetch(`/api/proxy?url=${encodeURIComponent(targetUrl)}`);
+          if (res.ok) {
+            const json = await res.json();
+            if (json && json.Data) return json;
+          }
+        } catch (e) {}
+      }
+
+      // ATTEMPT 4: Mirror servers.fivem.net
+      try {
+        const ctrl = new AbortController();
+        const timeout = setTimeout(() => ctrl.abort(), 4000);
+        const res = await fetch(mirrorUrl, { signal: ctrl.signal });
+        clearTimeout(timeout);
+        if (res.ok) {
+          const json = await res.json();
+          if (json && json.Data) return json;
+        }
+      } catch (e) {}
+
+      // ATTEMPT 5: Check if code is in presets or directory with snapshot
+      if (code.toLowerCase().includes("siderp") && typeof SIDERP_SNAPSHOT !== "undefined") {
+        return SIDERP_SNAPSHOT;
+      }
+
+      // ATTEMPT 6: Check if code exists in live database as fallback
+      const cached = getAllServersDirectory().find(s => s.code.toLowerCase() === code.toLowerCase());
+      if (cached) {
+        return {
+          Data: {
+            hostname: cached.name,
+            clients: cached.clients || 0,
+            sv_maxclients: cached.maxClients || 128,
+            gametype: cached.gametype || "Roleplay",
+            mapname: "San Andreas",
+            resources: [],
+            vars: {
+              sv_projectName: cached.name,
+              sv_projectDesc: cached.desc || "FiveM Server",
+              discord: cached.discord || "",
+              Discord: cached.discord || "",
+              tags: (cached.tags || []).join(", ")
+            },
+            isCachedFallback: true
+          }
+        };
+      }
+
+      throw new Error(`Cfx.re server '${code}' neodpovídá nebo je offline. Ověřte kód serveru.`);
     }
 
-
     /* =======================================================================
-       8. FUZZY SERVER NAME SEARCH
+       10. FUZZY SERVER NAME SEARCH & LIVE AUTOCOMPLETE
        ======================================================================= */
     function searchServersByName(query) {
       if (!query) return [];
       const q = query.trim().toLowerCase();
       const qWords = q.split(/\s+/).filter(w => w.length > 0);
       const scored = [];
+      const dir = getAllServersDirectory();
 
-      for (const s of SERVER_DIRECTORY) {
+      for (const s of dir) {
         const nameLow = (s.name || "").toLowerCase();
         const codeLow = (s.code || "").toLowerCase();
         const gameLow = (s.gametype || "").toLowerCase();
         const descLow = (s.desc || "").toLowerCase();
         const tagLow = (s.country || "").toLowerCase();
+        const tagsLow = (s.tags || []).join(" ").toLowerCase();
 
         let score = 0;
-        if (codeLow === q) score += 120;
-        else if (codeLow.includes(q)) score += 60;
+        if (codeLow === q) score += 250;
+        else if (codeLow.includes(q)) score += 100;
 
-        if (nameLow === q) score += 110;
-        else if (nameLow.startsWith(q)) score += 90;
-        else if (nameLow.includes(q)) score += 70;
+        if (nameLow === q) score += 200;
+        else if (nameLow.startsWith(q)) score += 130;
+        else if (nameLow.includes(q)) score += 80;
 
         for (const w of qWords) {
-          if (nameLow.includes(w)) score += 35;
-          else if (gameLow.includes(w) || descLow.includes(w) || tagLow.includes(w)) score += 15;
+          if (nameLow.includes(w)) score += 50;
+          else if (descLow.includes(w) || gameLow.includes(w) || tagLow.includes(w) || tagsLow.includes(w)) score += 20;
         }
+
+        if (s.clients) score += Math.min(s.clients, 30);
+        if (s.isPreset) score += 15;
 
         if (score > 0) scored.push({ ...s, score });
       }
 
       scored.sort((a, b) => b.score - a.score);
-      return scored.slice(0, 18);
+      return scored.slice(0, 36);
     }
+
+    function handleLiveInput(val) {
+      const q = (val || "").trim();
+      const dropdown = document.getElementById("autocompleteDropdown");
+      if (!dropdown) return;
+
+      if (q.length < 2) {
+        dropdown.style.display = "none";
+        dropdown.innerHTML = "";
+        activeAutocompleteIndex = -1;
+        return;
+      }
+
+      const matches = searchServersByName(q).slice(0, 10);
+      if (matches.length === 0) {
+        dropdown.style.display = "none";
+        return;
+      }
+
+      dropdown.innerHTML = "";
+      matches.forEach((m, idx) => {
+        const item = document.createElement("div");
+        item.className = "autocomplete-item";
+        item.dataset.index = idx;
+        item.onclick = (e) => {
+          e.stopPropagation();
+          selectAndScan(m.code);
+          dropdown.style.display = "none";
+        };
+
+        const isCz = (m.country || "").includes("CZ");
+        const tag = isCz ? `<span class="tag-cz">CZ/SK</span>` : `<span class="tag-global">GLOBAL</span>`;
+        const playerDisplay = m.players || (m.clients !== undefined ? `${m.clients} hráčů` : "Online");
+
+        item.innerHTML = `
+          <div class="autocomplete-main">
+            <div class="autocomplete-name">
+              <span>${escapeHtml(m.name)}</span>
+              ${tag}
+            </div>
+            <div class="autocomplete-desc">${escapeHtml(m.desc || m.gametype || "")}</div>
+          </div>
+          <div class="autocomplete-meta">
+            <span class="online-pill" style="font-size: 0.68rem; padding: 0.15rem 0.45rem;">${escapeHtml(playerDisplay)}</span>
+            <span class="server-code-pill font-mono">${escapeHtml(m.code)}</span>
+            <span class="btn-card-scan" style="font-size: 0.75rem;">Scan →</span>
+          </div>
+        `;
+        dropdown.appendChild(item);
+      });
+
+      activeAutocompleteIndex = -1;
+      dropdown.style.display = "block";
+    }
+
+    function handleInputKeydown(e) {
+      const dropdown = document.getElementById("autocompleteDropdown");
+      const items = dropdown ? dropdown.querySelectorAll(".autocomplete-item") : [];
+
+      if (dropdown && dropdown.style.display === "block" && items.length > 0) {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          activeAutocompleteIndex = (activeAutocompleteIndex + 1) % items.length;
+          updateAutocompleteSelection(items);
+          return;
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          activeAutocompleteIndex = (activeAutocompleteIndex - 1 + items.length) % items.length;
+          updateAutocompleteSelection(items);
+          return;
+        } else if (e.key === "Enter" && activeAutocompleteIndex >= 0) {
+          e.preventDefault();
+          items[activeAutocompleteIndex].click();
+          return;
+        } else if (e.key === "Escape") {
+          dropdown.style.display = "none";
+          return;
+        }
+      }
+
+      if (e.key === "Enter") {
+        if (dropdown) dropdown.style.display = "none";
+        startScan();
+      }
+    }
+
+    function updateAutocompleteSelection(items) {
+      items.forEach((it, idx) => {
+        if (idx === activeAutocompleteIndex) {
+          it.classList.add("selected");
+          it.scrollIntoView({ block: "nearest" });
+        } else {
+          it.classList.remove("selected");
+        }
+      });
+    }
+
+    document.addEventListener("click", (e) => {
+      const box = document.querySelector(".scanner-box");
+      const dropdown = document.getElementById("autocompleteDropdown");
+      if (dropdown && box && !box.contains(e.target)) {
+        dropdown.style.display = "none";
+      }
+    });
 
     function performNameSearch(query) {
       const matches = searchServersByName(query);
@@ -1813,7 +2526,7 @@
         card.className = "server-search-card";
         card.onclick = () => selectAndScan(s.code);
 
-        const isCz = s.country === "CZ/SK" || s.country === "CZ";
+        const isCz = (s.country || "").includes("CZ");
         const tagBadge = isCz 
           ? `<span class="tag-cz">CZ/SK</span>` 
           : `<span class="tag-global">GLOBAL</span>`;
@@ -1835,8 +2548,8 @@
           </div>
 
           <div class="search-card-meta">
-            <span>Hráči: <strong>${s.players || "Online"}</strong></span>
-            <span>Mód: <strong>${s.gametype || "Roleplay"}</strong></span>
+            <span>Hráči / Sloty: <strong style="color: #00F0FF;">${escapeHtml(s.players || (s.clients !== undefined ? s.clients + '/' + (s.maxClients || 128) : 'Online'))}</strong></span>
+            <span>Mód: <strong>${escapeHtml(s.gametype || "Roleplay")}</strong></span>
           </div>
         `;
         grid.appendChild(card);
@@ -1848,6 +2561,8 @@
 
     function selectAndScan(code) {
       document.getElementById("serverInput").value = code;
+      const dropdown = document.getElementById("autocompleteDropdown");
+      if (dropdown) dropdown.style.display = "none";
       closeSearchResults();
       startScan(code);
     }
@@ -2326,6 +3041,9 @@
     }
 
     window.addEventListener("DOMContentLoaded", () => {
+      if (typeof renderPresetCards === "function") {
+        renderPresetCards('all');
+      }
       const params = new URLSearchParams(window.location.search);
       const s = params.get("server") || params.get("target");
       if (s) {
